@@ -7,36 +7,8 @@ from collections import deque
 import plotly.graph_objs as go
 import random
 from puller import getvalue
-#from pandas_datareader.data import DataReader
-#from max6675 import tc1
-#print(dict_temp)
-app = dash.Dash('data-logger')
-app.title = 'Citriot'
-max_length = 50
-times = deque(maxlen=max_length)
-app.config['suppress_callback_exceptions'] = True
 
-tab_style = {
-    'borderBottom': '1px solid #d6d6d6',
-
-    'fontWeight': 'bold',
-    'backgroundColor': '#999999',
-}
-
-tabs_styles = {
-    'height': '70px'
-}
-
-tab_selected_style = {
-    'borderTop': '1px solid #d6d6d6',
-    'borderBottom': '1px solid #d6d6d6',
-    'backgroundColor': '#119DFF',
-    'color': 'white',
-    'padding': '6px'
-}
-
-times = deque(maxlen=max_length)
-
+times = deque(maxlen=50)
 thermocouple_1 = deque(maxlen=50)
 thermocouple_2 = deque(maxlen=50)
 thermocouple_3 = deque(maxlen=50)
@@ -50,8 +22,6 @@ accelerometer_1 = deque(maxlen=50)
 accelerometer_2 = deque(maxlen=50)
 accelerometer_3 = deque(maxlen=50)
 
-
-
 data_thermocouple = {"Thermocouple 1": thermocouple_1,
 "Thermocouple 2": thermocouple_2,
 "Thermocouple 3": thermocouple_3,
@@ -60,7 +30,6 @@ data_thermocouple = {"Thermocouple 1": thermocouple_1,
 "Thermocouple 6":thermocouple_6,
 "Thermocouple 7":thermocouple_7,
 "Thermocouple 8":thermocouple_8}
-
 
 data_accelerometer =  {"Accelerometer 1": accelerometer_1,
 "Accelerometer 2": accelerometer_2,
@@ -78,7 +47,6 @@ urange1, urange2, urange3, urange4, urange5, urange6, urange7, urange8 = 0,0,0,0
 lrange1, lrange2, lrange3, lrange4, lrange5, lrange6, lrange7, lrange8 = 0,0,0,0,0,0,0,0 #integers
 do1, do2, do3, do4, do5, do6, do7, do8 = 0,0,0,0,0,0,0,0 #Boolean Values
 di1, di2, di3, di4, di5, di6, di7, di8 = 0,0,0,0,0,0,0,0 #Boolean Values
-
 
 data_urange = {"urange1": urange1,
 "urange2": urange2,
@@ -115,51 +83,30 @@ data_do = {"do1": do1,
 "do6": do6,
 "do7": do7,
 "do8": do8}
-
-
-def update_thermocouple_sensor(times, thermocouple_1, thermocouple_2, thermocouple_3, thermocouple_4, thermocouple_5, thermocouple_6, thermocouple_7, thermocouple_8):
-
-    times.append(time.time())
-    if len(times) == 1:
-        #starting relevant values
-        x = [1,2,3,4,5,6,7]
-
-        thermocouple_1.append(x)
-        thermocouple_2.append(20)
-        thermocouple_3.append(30)
-        thermocouple_4.append(40)
-        thermocouple_5.append(50)
-        thermocouple_6.append(60)
-        thermocouple_7.append(70)
-        thermocouple_8.append(80)
-    else:
-        for data_of_interest in [thermocouple_1, thermocouple_2, thermocouple_3, thermocouple_4, thermocouple_5, thermocouple_6, thermocouple_7, thermocouple_8]:
-            pass#data_of_interest.append(data_of_interest[-1]+data_of_interest[-1])
-
-    return times, thermocouple_1, thermocouple_2, thermocouple_3, thermocouple_4, thermocouple_5, thermocouple_6, thermocouple_7, thermocouple_8
-
-    times, thermocouple_1, thermocouple_2, thermocouple_3, thermocouple_4, thermocouple_5, thermocouple_6, thermocouple_7, thermocouple_8 = update_thermocouple_sensor(times, thermocouple_1, thermocouple_2, thermocouple_3, thermocouple_4, thermocouple_5, thermocouple_6, thermocouple_7, thermocouple_8)
-    print(times)
  
+app = dash.Dash('data-logger')
+app.title = 'Citriot'
 
-def update_accelerometer_sensor(times, accelerometer_1, accelerometer_2, accelerometer_3):
+app.config['suppress_callback_exceptions'] = True
 
-    times.append(time.time())
-    if len(times) == 1:
-        #starting relevant values
-        accelerometer_1.append(11)
-        accelerometer_2.append(200)
-        accelerometer_3.append(300)
+tab_style = {
+    'borderBottom': '1px solid #d6d6d6',
 
-    else:
-        for data_of_interest in [accelerometer_1, accelerometer_2, accelerometer_3]:
-            pass#data_of_interest.append(data_of_interest[-1]+data_of_interest[-1]*random.uniform(-0.0001,0.0001))
+    'fontWeight': 'bold',
+    'backgroundColor': '#999999',
+}
 
-    return times, accelerometer_1, accelerometer_2, accelerometer_3
+tabs_styles = {
+    'height': '70px'
+}
 
-
-    times, accelerometer_1, accelerometer_2, accelerometer_3, accelerometer_4, accelerometer_5, accelerometer_6, accelerometer_7, accelerometer_8 = update_thermocouple_sensor(times, accelerometer_1, accelerometer_2, accelerometer_3, accelerometer_4, accelerometer_5, accelerometer_6, accelerometer_7, accelerometer_8)
-
+tab_selected_style = {
+    'borderTop': '1px solid #d6d6d6',
+    'borderBottom': '1px solid #d6d6d6',
+    'backgroundColor': '#119DFF',
+    'color': 'white',
+    'padding': '6px'
+}
 
 def analog_digital_func(times, data_lrange, data_urange, data_di, data_do):
 
@@ -487,7 +434,7 @@ page_1_layout = html.Div([
                                 value=['Thermocouple 1'],
                                 multi=True),
                     ]),
-                    html.Div(children=html.Div(id='graphop2'), className='row'),
+                    html.Div(children=html.Div(id='graphop1'), className='row'),
                     dcc.Interval(
                     id='graph-update',
                     interval=100),
@@ -537,22 +484,7 @@ page_3_layout = html.Div(analog_tab(), style={'display': 'inline-block'})
 page_4_layout = html.Div(digitalinput_tab(), style={'display': 'inline-block'})
 page_5_layout = html.Div(digitaloutput_tab(), style={'display': 'inline-block'})
 
-# Update the index
-@app.callback(dash.dependencies.Output('page-content', 'children'),
-              [dash.dependencies.Input('url', 'pathname')])
-def display_page(pathname):
-    if pathname == '/page-1':
-        return page_1_layout
-    elif pathname == '/page-2':
-        return page_2_layout
-    elif pathname == '/page-3':
-        return page_3_layout
-    elif pathname == '/page-4':
-        return page_4_layout
-    elif pathname == '/page-5':
-        return page_5_layout
-    else:
-        return index_page
+
 
 
 def update_thermocouple_values(times, thermocouple_1, thermocouple_2, thermocouple_3, thermocouple_4, thermocouple_5, thermocouple_6, thermocouple_7, thermocouple_8):
@@ -593,7 +525,22 @@ def update_accelerometer_values(times, accelerometer_1, accelerometer_2, acceler
 times, accelerometer_1, accelerometer_2, accelerometer_3 = update_accelerometer_values(times, accelerometer_1, accelerometer_2, accelerometer_3)
 
 
-        
+@app.callback(dash.dependencies.Output('page-content', 'children'),
+              [dash.dependencies.Input('url', 'pathname')])
+def display_page(pathname):
+    if pathname == '/page-1':
+        return page_1_layout
+    elif pathname == '/page-2':
+        return page_2_layout
+    elif pathname == '/page-3':
+        return page_3_layout
+    elif pathname == '/page-4':
+        return page_4_layout
+    elif pathname == '/page-5':
+        return page_5_layout
+    else:
+        return index_page
+
 
 @app.callback(
     dash.dependencies.Output('graphop1','children'),
@@ -602,7 +549,7 @@ times, accelerometer_1, accelerometer_2, accelerometer_3 = update_accelerometer_
 def update_graph(data_names, n):
 
     graphs = []
-    update_thermocouple_values(times, thermocouple_1, thermocouple_2, thermocouple_3, thermocouple_4, thermocouple_5, thermocouple_6)
+    update_thermocouple_values(times, thermocouple_1, thermocouple_2, thermocouple_3, thermocouple_4, thermocouple_5, thermocouple_6, thermocouple_7, thermocouple_8)
     if len(data_names)>2:
         class_choice = 'col s12 m6 l4'
     elif len(data_names) == 2:
