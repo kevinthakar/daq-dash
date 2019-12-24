@@ -37,8 +37,8 @@ tab_selected_style = {
 
 times = deque(maxlen=max_length)
 
-thermocouple_1 = deque([1,2,3,4,5,6,7,8,9,10])
-thermocouple_2 = deque([1,2,3,4,5,6,7,8,9,10])
+thermocouple_1 = deque(maxlen=50)
+thermocouple_2 = deque(maxlen=50)
 thermocouple_3 = deque(maxlen=50)
 thermocouple_4 = deque(maxlen=50)
 thermocouple_5 = deque(maxlen=50)
@@ -78,6 +78,7 @@ urange1, urange2, urange3, urange4, urange5, urange6, urange7, urange8 = 0,0,0,0
 lrange1, lrange2, lrange3, lrange4, lrange5, lrange6, lrange7, lrange8 = 0,0,0,0,0,0,0,0 #integers
 do1, do2, do3, do4, do5, do6, do7, do8 = 0,0,0,0,0,0,0,0 #Boolean Values
 di1, di2, di3, di4, di5, di6, di7, di8 = 0,0,0,0,0,0,0,0 #Boolean Values
+
 
 data_urange = {"urange1": urange1,
 "urange2": urange2,
@@ -121,8 +122,9 @@ def update_thermocouple_sensor(times, thermocouple_1, thermocouple_2, thermocoup
     times.append(time.time())
     if len(times) == 1:
         #starting relevant values
+        x = [1,2,3,4,5,6,7]
 
-        thermocouple_1.append(1)
+        thermocouple_1.append(x)
         thermocouple_2.append(20)
         thermocouple_3.append(30)
         thermocouple_4.append(40)
@@ -145,7 +147,7 @@ def update_accelerometer_sensor(times, accelerometer_1, accelerometer_2, acceler
     times.append(time.time())
     if len(times) == 1:
         #starting relevant values
-        accelerometer_1.append(100)
+        accelerometer_1.append(11)
         accelerometer_2.append(200)
         accelerometer_3.append(300)
 
@@ -159,97 +161,13 @@ def update_accelerometer_sensor(times, accelerometer_1, accelerometer_2, acceler
     times, accelerometer_1, accelerometer_2, accelerometer_3, accelerometer_4, accelerometer_5, accelerometer_6, accelerometer_7, accelerometer_8 = update_thermocouple_sensor(times, accelerometer_1, accelerometer_2, accelerometer_3, accelerometer_4, accelerometer_5, accelerometer_6, accelerometer_7, accelerometer_8)
 
 
-def analog_digital_func():
+def analog_digital_func(times, data_lrange, data_urange, data_di, data_do):
 
     return 0
 
-app.layout = html.Div([
-        dcc.Location(id='url', refresh=False),
-        html.Div(id='page-content')
-])
-
-
-index_page = html.Div([
-
-    html.Div([html.H3('Welcome to C-DAQ!')], style={'text-align':'center'}),
-    html.Div([html.Img(src='assets/image2vector.svg')], style={'text-align':'center'}),
-    html.Div([dcc.Link('Go to Digital Sensors', href='/page-1')], style={'text-align':'center'}),
-    html.Br(),
-    html.Div(dcc.Link('Go to Analog/Digital Inputs', href='/page-2'), style={'text-align':'center'}),
-    ])
-
-page_1_layout = html.Div([
-
-                    html.Div(
-        id="banner",
-        className="banner",
-        children=[
-
-            html.Div(
-                id="banner-text",
-                children=[
-                    html.H5("Data Acquisition Metrics"),
-                ]),
-
-        html.Div(
-            id="about-us-button",
-            children=[
-                html.Div(
-                    children=[
-                        html.H5(children="Citriot Solutions", n_clicks=0),
-                        html.H6(children="Think. Engineer.", n_clicks=0),
-                        ]),
-                html.Img(src='assets/citriot_logo.jpg')
-            ])
-        
-        ]),
-                    html.Div([
-                        dcc.Tabs(id="tabselect", value=names[0], style=tab_style, children=[
-                            dcc.Tab(label='Thermocouple', value=names[0], style=tab_style, selected_style=tab_selected_style),
-                            dcc.Tab(label='Accelerometer', value=names[1], style=tab_style, selected_style=tab_selected_style),
-                                ],),
-                        ]),
-
-                    html.Div([dcc.Dropdown(id='dropdownlist',
-                                value=['Thermocouple 1'],
-                                multi=True),
-                    ]),
-                    html.Div(children=html.Div(id='graphs'), className='row'),
-                    dcc.Interval(
-                    id='graph-update',
-                    interval=100),
-                ], className="container",style={'width':'98%','margin-left':10,'margin-right':10,'max-width':50000})
-
-page_2_layout = html.Div([
-
-    html.Div(
-        id="banner",
-        className="banner",
-        children=[
-
-            html.Div(
-                id="banner-text",
-                children=[
-                    html.H5("Data Acquisition Metrics"),
-                ]),
-
-        html.Div(
-            id="about-us-button",
-            children=[
-                html.Div(
-                    children=[
-                        html.H5(children="Citriot Solutions", n_clicks=0),
-                        html.H6(children="Think. Engineer.", n_clicks=0),
-                        ]),
-                html.Img(src='assets/citriot_logo.jpg')
-            ]),
-            dcc.Link('Go back to home', href='/'),
-    ]),
-
-    html.Div(children=[#all three sections
-        html.Div(children=[ #analog ip only
-            html.H3('Analog Input'),
-
+def analog_tab():
+    X = html.Div(children=[
+        html.H3('Analog Input'), #element1
             html.Div([
                 dcc.Dropdown(
                 id='demo-dropdown',
@@ -269,7 +187,7 @@ page_2_layout = html.Div([
                 id='my-numeric-input',
                 value=0,
                 style={'paddingBottom': 30, 'display':'inline-block'}
-                )]),
+                )]), #element 2
             html.Div([
                 dcc.Dropdown(
                 id='demo-dropdown',
@@ -290,7 +208,7 @@ page_2_layout = html.Div([
                 value=0,
                 style={'paddingBottom': 30, 'display':'inline-block'}
                 ),
-                ]),
+                ]), #element 3
             html.Div([
                 dcc.Dropdown(
                 id='demo-dropdown',
@@ -310,7 +228,7 @@ page_2_layout = html.Div([
                 id='my-numeric-input',
                 value=0,
                 style={'paddingBottom': 30, 'display':'inline-block'}),
-            ]),
+            ]), #element 4
             html.Div([
                 dcc.Dropdown(
                 id='demo-dropdown',
@@ -330,7 +248,7 @@ page_2_layout = html.Div([
                 id='my-numeric-input',
                 value=0,
                 style={'paddingBottom': 30, 'display':'inline-block'}),
-            ]),
+            ]), #element 5
             html.Div([
                 dcc.Dropdown(
                 id='demo-dropdown',
@@ -350,7 +268,7 @@ page_2_layout = html.Div([
                 id='my-numeric-input',
                 value=0,
                 style={'paddingBottom': 30, 'display':'inline-block'}),
-            ]),
+            ]), #element 6
             html.Div([
                 dcc.Dropdown(
                 id='demo-dropdown',
@@ -370,7 +288,7 @@ page_2_layout = html.Div([
                 id='my-numeric-input',
                 value=0,
                 style={'paddingBottom': 30, 'display':'inline-block'}),
-            ]),
+            ]), #element 7
             html.Div([
                 dcc.Dropdown(
                 id='demo-dropdown',
@@ -390,7 +308,7 @@ page_2_layout = html.Div([
                 id='my-numeric-input',
                 value=0,
                 style={'paddingBottom': 30, 'display':'inline-block'}),
-            ]),
+            ]), #element 8
             html.Div([
                 dcc.Dropdown(
                 id='demo-dropdown',
@@ -411,99 +329,213 @@ page_2_layout = html.Div([
                 id='my-numeric-input',
                 value=0,
                 style={'paddingBottom': 30, 'display':'inline-block'}),
-                ])
-            ]),
+                ]) #element 9
+            ])
 
-        html.Div(children=[html.H3("Digital Input"),
+    return X
+
+def digitalinput_tab():
+    X = html.Div(children=[
+        
+        html.H3("Digital Input"), #element 1
                 daq.Indicator(
                 id='my-toggle-switch',
                 value=True,
                 style={"marginBottom": 25},
-        ),
+                ),#element 2
+
                 daq.Indicator(
                 id='my-toggle-switch',
                 value=False,
                 style={"marginBottom": 25}
-        ),
+                ), #element 3
+
                 daq.Indicator(
                 id='my-toggle-switch',
                 value=False,
                 style={"marginBottom": 25}
-        ),
+                ), #element 4
+
                 daq.Indicator(
                 id='my-toggle-switch',
                 value=False,
                 style={"marginBottom": 25}
-        ),
+                ), #element 5
                 daq.Indicator(
                 id='my-toggle-switch',
                 value=False,
                 style={"marginBottom": 25}
-        ),
+                ), #element 6
                 daq.Indicator(
                 id='my-toggle-switch',
                 label=False,
                 style={"marginBottom": 25}
-        ),
+                ), #element 7
                 daq.Indicator(
                 id='my-toggle-switch',
                 value=False,
                 style={"marginBottom": 25}
-        ),
+                ), #element 8
                 daq.Indicator(
                 id='my-toggle-switch',
                 value=False,
                 style={"marginBottom": 25, 'text-align': 'center'}
-        ),
-            ], style={'width':'30%', 'marginLeft': 80, 'text-align': 'center', 'display':'inline-block '}),
-    
-        html.Div(children=[
-            html.H3("Digital Output"),
-            daq.BooleanSwitch(
-            id='my-daq-booleanswitch',
-            on=True,
-            style={'paddingBottom': 25}
-        ),
-            daq.BooleanSwitch(
-            id='my-daq-booleanswitch',
-            on=True,
-            style={'paddingBottom': 25}
-        ),
-            daq.BooleanSwitch(
-            id='my-daq-booleanswitch',
-            on=True,
-            style={'paddingBottom': 25}
-        ),
-            daq.BooleanSwitch(
-            id='my-daq-booleanswitch',
-            on=True,
-            style={'paddingBottom': 25}
-        ),
-            daq.BooleanSwitch(
-            id='my-daq-booleanswitch',
-            on=True,
-            style={'paddingBottom': 25}
-        ),
-            daq.BooleanSwitch(
-            id='my-daq-booleanswitch',
-            on=True,
-            style={'paddingBottom': 25}
-        ),
-            daq.BooleanSwitch(
-            id='my-daq-booleanswitch',
-            on=True,
-            style={'paddingBottom': 25}
-        ),
-            daq.BooleanSwitch(
-            id='my-daq-booleanswitch',
-            on=True,
-            style={'paddingBottom': 25}
-        ),
-        
-    ], style={'width': '30%', 'text-align': 'center', 'display':'inline-block'}),
-    ],)
+                ), #element 9
+            ], style={'width':'30%', 'marginLeft': 80, 'text-align': 'center', 'display':'inline-block '})
+    return X
 
+def digitaloutput_tab():
+
+        X = html.Div(children=[
+                    html.H3("Digital Output"),
+                    daq.BooleanSwitch(
+                    id='my-daq-booleanswitch',
+                    on=True,
+                    style={'paddingBottom': 25}
+                ),
+                    daq.BooleanSwitch(
+                    id='my-daq-booleanswitch',
+                    on=True,
+                    style={'paddingBottom': 25}
+                ),
+                    daq.BooleanSwitch(
+                    id='my-daq-booleanswitch',
+                    on=True,
+                    style={'paddingBottom': 25}
+                ),
+                    daq.BooleanSwitch(
+                    id='my-daq-booleanswitch',
+                    on=True,
+                    style={'paddingBottom': 25}
+                ),
+                    daq.BooleanSwitch(
+                    id='my-daq-booleanswitch',
+                    on=True,
+                    style={'paddingBottom': 25}
+                ),
+                    daq.BooleanSwitch(
+                    id='my-daq-booleanswitch',
+                    on=True,
+                    style={'paddingBottom': 25}
+                ),
+                    daq.BooleanSwitch(
+                    id='my-daq-booleanswitch',
+                    on=True,
+                    style={'paddingBottom': 25}
+                ),
+                    daq.BooleanSwitch(
+                    id='my-daq-booleanswitch',
+                    on=True,
+                    style={'paddingBottom': 25}
+                ),
+                
+            ], style={'width': '30%', 'text-align': 'center', 'display':'inline-block'})
+            
+        return X   
+
+app.layout = html.Div([
+        dcc.Location(id='url', refresh=False),
+        html.Div(id='page-content')
 ])
+
+
+index_page = html.Div([
+
+    html.Div([html.H3('Welcome to C-DAQ!')], style={'text-align':'center'}),
+    html.Br(),
+    html.Div([html.Img(src='assets/image2vector.svg')], style={'text-align':'center'}),
+    html.Br(),
+    html.Div([dcc.Link('Go to Temperature Sensors', href='/page-1')], style={'text-align':'center'}),
+    html.Br(),
+    html.Div([dcc.Link('Go to Thermocouple Sensors', href='/page-2')], style={'text-align':'center'}),
+    html.Br(),
+    html.Div([dcc.Link('Go to Analog Input Sensors', href='/page-3')], style={'text-align':'center'}),
+    html.Br(),
+    html.Div(dcc.Link('Go to Digital Input Sensors', href='/page-4'), style={'text-align':'center'}),
+    html.Br(),
+    html.Div(dcc.Link('Go to Digital Output Sensors', href='/page-5'), style={'text-align':'center'}),
+    ])
+
+page_1_layout = html.Div([
+
+                    html.Div(
+                        id="banner",
+                        className="banner",
+                        children=[
+
+                        html.Div(
+                        id="banner-text",
+                        children=[
+                            html.H5("Data Acquisition Metrics"),
+                        ]),
+
+                html.Div(
+                    id="about-us-button",
+                    children=[
+                    html.Div(
+                    children=[
+                        html.H5(children="Citriot Solutions", n_clicks=0),
+                        html.H6(children="Think. Engineer.", n_clicks=0),
+                        ]),
+                html.Img(src='assets/citriot_logo.jpg')
+            ]),
+            dcc.Link('Go back to home', href='/'),
+        
+            ]),
+                html.Div([dcc.Dropdown(id='dropdownlist1',
+                                options = [{'label': s, 'value': s} for s in data_thermocouple.keys()],
+                                value=['Thermocouple 1'],
+                                multi=True),
+                    ]),
+                    html.Div(children=html.Div(id='graphop2'), className='row'),
+                    dcc.Interval(
+                    id='graph-update',
+                    interval=100),
+                ], className="container",style={'width':'98%','margin-left':10,'margin-right':10,'max-width':50000})
+
+
+
+page_2_layout = html.Div([
+
+                    html.Div(
+                        id="banner",
+                        className="banner",
+                        children=[
+
+                        html.Div(
+                        id="banner-text",
+                        children=[
+                            html.H5("Data Acquisition Metrics"),
+                        ]),
+
+                html.Div(
+                    id="about-us-button",
+                    children=[
+                    html.Div(
+                    children=[
+                        html.H5(children="Citriot Solutions", n_clicks=0),
+                        html.H6(children="Think. Engineer.", n_clicks=0),
+                        ]),
+                html.Img(src='assets/citriot_logo.jpg')
+            ]),
+            dcc.Link('Go back to home', href='/'),
+        
+            ]),
+                html.Div([dcc.Dropdown(id='dropdownlist2',
+                                options = [{'label': s, 'value': s} for s in data_accelerometer.keys()],
+                                value=['Accelerometer 1'],
+                                multi=True),
+                    ]),
+                    html.Div(children=html.Div(id='graphop2'), className='row'),
+                    dcc.Interval(
+                    id='graph-update',
+                    interval=100),
+                ], className="container",style={'width':'98%','margin-left':10,'margin-right':10,'max-width':50000})
+
+
+page_3_layout = html.Div(analog_tab(), style={'display': 'inline-block'})
+page_4_layout = html.Div(digitalinput_tab(), style={'display': 'inline-block'})
+page_5_layout = html.Div(digitaloutput_tab(), style={'display': 'inline-block'})
 
 # Update the index
 @app.callback(dash.dependencies.Output('page-content', 'children'),
@@ -513,37 +545,71 @@ def display_page(pathname):
         return page_1_layout
     elif pathname == '/page-2':
         return page_2_layout
+    elif pathname == '/page-3':
+        return page_3_layout
+    elif pathname == '/page-4':
+        return page_4_layout
+    elif pathname == '/page-5':
+        return page_5_layout
     else:
         return index_page
+
+
+def update_thermocouple_values(times, thermocouple_1, thermocouple_2, thermocouple_3, thermocouple_4, thermocouple_5, thermocouple_6, thermocouple_7, thermocouple_8):
+
+    times.append(time.time())
+    if len(times) == 1:
+        #starting relevant values
+        thermocouple_1.append(random.randrange(180,230))
+        thermocouple_2.append(random.randrange(95,115))
+        thermocouple_3.append(random.randrange(170,220))
+        thermocouple_4.append(random.randrange(1000,9500))
+        thermocouple_5.append(random.randrange(30,140))
+        thermocouple_6.append(random.randrange(10,90))
+        thermocouple_7.append(random.randrange(35,90))
+        thermocouple_8.append(random.randrange(10,90))
+    else:
+        for data_of_interest in [thermocouple_1, thermocouple_2, thermocouple_3, thermocouple_4, thermocouple_5, thermocouple_6, thermocouple_7, thermocouple_8]:
+            data_of_interest.append(data_of_interest[-1]+data_of_interest[-1]*random.uniform(-0.0001,0.0001))
+
+    return times, thermocouple_1, thermocouple_2, thermocouple_3, thermocouple_4, thermocouple_5, thermocouple_6, thermocouple_7, thermocouple_8
+
+times, thermocouple_1, thermocouple_2, thermocouple_3, thermocouple_4, thermocouple_5, thermocouple_6, thermocouple_7, thermocouple_8 = update_thermocouple_values(times, thermocouple_1, thermocouple_2, thermocouple_3, thermocouple_4, thermocouple_5, thermocouple_6, thermocouple_7, thermocouple_8)
+
+def update_accelerometer_values(times, accelerometer_1, accelerometer_2, accelerometer_3):
+
+    times.append(time.time())
+    if len(times) == 1:
+        #starting relevant values
+        accelerometer_1.append(random.randrange(10,90))
+        accelerometer_2.append(random.randrange(35,90))
+        accelerometer_3.append(random.randrange(10,90))
+    else:
+        for data_of_interest in [accelerometer_1, accelerometer_2, accelerometer_3]:
+            pass#data_of_interest.append(data_of_interest[-1]+data_of_interest[-1]*random.uniform(-0.0001,0.0001))
+
+    return times, accelerometer_1, accelerometer_2, accelerometer_3
+
+times, accelerometer_1, accelerometer_2, accelerometer_3 = update_accelerometer_values(times, accelerometer_1, accelerometer_2, accelerometer_3)
+
+
         
 
-@app.callback(dash.dependencies.Output('dropdownlist', 'options'),
-              [dash.dependencies.Input('tabselect', 'value')])
-
-def render_content(value):
-
-    graphs = []
-    if value == 'Thermocouple':
-    
-            return [{'label': i, 'value': i} for i in tabs_corespondsensors[value]]
-
-    elif value == 'Accelerometer':
-
-        return [{'label': i, 'value': i} for i in tabs_corespondsensors[value]]
-    
-    elif value == 'Analog/Digital/IO':
-
-            return [{'label': i, 'value': i} for i in tabs_corespondsensors[value]]
-
-
-@app.callback(dash.dependencies.Output('graphs', 'children'),
-              [dash.dependencies.Input('dropdownlist', 'value'), dash.dependencies.Input('graph-update', 'n_intervals')])
-
+@app.callback(
+    dash.dependencies.Output('graphop1','children'),
+    [dash.dependencies.Input('dropdownlist1', 'value'), dash.dependencies.Input('graph-update', 'interval')]
+    )
 def update_graph(data_names, n):
 
     graphs = []
-    update_thermocouple_sensor(times, thermocouple_1, thermocouple_2, thermocouple_3, thermocouple_4, thermocouple_5, thermocouple_6, thermocouple_7, thermocouple_8)
-    update_accelerometer_sensor(times, accelerometer_1, accelerometer_2, accelerometer_3)
+    update_thermocouple_values(times, thermocouple_1, thermocouple_2, thermocouple_3, thermocouple_4, thermocouple_5, thermocouple_6)
+    if len(data_names)>2:
+        class_choice = 'col s12 m6 l4'
+    elif len(data_names) == 2:
+        class_choice = 'col s12 m6 l6'
+    else:
+        class_choice = 'col s12'
+
 
     for data_name in data_names:
 
@@ -560,9 +626,47 @@ def update_graph(data_names, n):
             animate=True,
             figure={'data': [data],'layout' : go.Layout(xaxis=dict(range=[min(times),max(times)]),
                                                         yaxis=dict(range=[min(data_thermocouple[data_name]),max(data_thermocouple[data_name])]),
-                                                        margin={'l':50,'r':1,'t':45,'b':1},
+                                                        margin={'l':50,'r':1,'t':45,'b':70},
                                                         title='{}'.format(data_name))}
-            )))
+            ), className=class_choice))
+
+    return graphs
+
+
+@app.callback(
+    dash.dependencies.Output('graphop2','children'),
+    [dash.dependencies.Input('dropdownlist2', 'value'), dash.dependencies.Input('graph-update', 'interval')]
+    )
+def update_graph(data_names, n):
+
+    graphs = []
+    update_accelerometer_values(times, accelerometer_1, accelerometer_2, accelerometer_3)
+    if len(data_names)>2:
+        class_choice = 'col s12 m6 l4'
+    elif len(data_names) == 2:
+        class_choice = 'col s12 m6 l6'
+    else:
+        class_choice = 'col s12'
+
+
+    for data_name in data_names:
+
+        data = go.Scatter(
+            x=list(times),
+            y=list(data_accelerometer[data_name]),
+            name='Scatter',
+            fill="tozeroy",
+            fillcolor="#6897bb"
+            )
+
+        graphs.append(html.Div(dcc.Graph(
+            id=data_name,
+            animate=True,
+            figure={'data': [data],'layout' : go.Layout(xaxis=dict(range=[min(times),max(times)]),
+                                                        yaxis=dict(range=[min(data_accelerometer[data_name]),max(data_accelerometer[data_name])]),
+                                                        margin={'l':50,'r':1,'t':45,'b':70},
+                                                        title='{}'.format(data_name))}
+            ), className=class_choice))
 
     return graphs
 
