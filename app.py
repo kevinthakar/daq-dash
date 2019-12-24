@@ -139,9 +139,9 @@ def analog_tab():
                 dcc.Dropdown(
                 id='demo-dropdown',
                 options=[
-                    {'label': 'New York City', 'value': 'NYC'},
-                    {'label': 'Montreal', 'value': 'MTL'},
-                    {'label': 'San Francisco', 'value': 'SF'}
+                    {'label': 'Pressure', 'value': 'Temp'},
+                    {'label': 'Vibration', 'value': 'Vib'},
+                    {'label': 'Flow', 'value': 'Flow'}
                     ],
                 value='NYC',
                 style={'width':'57%'}),
@@ -160,9 +160,9 @@ def analog_tab():
                 dcc.Dropdown(
                 id='demo-dropdown',
                 options=[
-                    {'label': 'New York City', 'value': 'NYC'},
-                    {'label': 'Montreal', 'value': 'MTL'},
-                    {'label': 'San Francisco', 'value': 'SF'}
+                    {'label': 'Pressure', 'value': 'Temp'},
+                    {'label': 'Vibration', 'value': 'Vib'},
+                    {'label': 'Flow', 'value': 'Flow'}
                     ],
                 value='NYC',
                 style={'width':'57%'}),
@@ -180,9 +180,9 @@ def analog_tab():
                 dcc.Dropdown(
                 id='demo-dropdown',
                 options=[
-                    {'label': 'New York City', 'value': 'NYC'},
-                    {'label': 'Montreal', 'value': 'MTL'},
-                    {'label': 'San Francisco', 'value': 'SF'}
+                    {'label': 'Pressure', 'value': 'Temp'},
+                    {'label': 'Vibration', 'value': 'Vib'},
+                    {'label': 'Flow', 'value': 'Flow'}
                     ],
                 value='NYC',
                 style={'width':'57%'}),
@@ -200,9 +200,9 @@ def analog_tab():
                 dcc.Dropdown(
                 id='demo-dropdown',
                 options=[
-                    {'label': 'New York City', 'value': 'NYC'},
-                    {'label': 'Montreal', 'value': 'MTL'},
-                    {'label': 'San Francisco', 'value': 'SF'}
+                    {'label': 'Pressure', 'value': 'Temp'},
+                    {'label': 'Vibration', 'value': 'Vib'},
+                    {'label': 'Flow', 'value': 'Flow'}
                     ],
                 value='NYC',
                 style={'width':'57%'}),
@@ -220,9 +220,9 @@ def analog_tab():
                 dcc.Dropdown(
                 id='demo-dropdown',
                 options=[
-                    {'label': 'New York City', 'value': 'NYC'},
-                    {'label': 'Montreal', 'value': 'MTL'},
-                    {'label': 'San Francisco', 'value': 'SF'}
+                    {'label': 'Pressure', 'value': 'Temp'},
+                    {'label': 'Vibration', 'value': 'Vib'},
+                    {'label': 'Flow', 'value': 'Flow'}
                     ],
                 value='NYC',
                 style={'width':'57%'}),
@@ -240,9 +240,9 @@ def analog_tab():
                 dcc.Dropdown(
                 id='demo-dropdown',
                 options=[
-                    {'label': 'New York City', 'value': 'NYC'},
-                    {'label': 'Montreal', 'value': 'MTL'},
-                    {'label': 'San Francisco', 'value': 'SF'}
+                    {'label': 'Pressure', 'value': 'Temp'},
+                    {'label': 'Vibration', 'value': 'Vib'},
+                    {'label': 'Flow', 'value': 'Flow'}
                     ],
                 value='NYC',
                 style={'width':'57%'}),
@@ -260,9 +260,9 @@ def analog_tab():
                 dcc.Dropdown(
                 id='demo-dropdown',
                 options=[
-                    {'label': 'New York City', 'value': 'NYC'},
-                    {'label': 'Montreal', 'value': 'MTL'},
-                    {'label': 'San Francisco', 'value': 'SF'}
+                    {'label': 'Pressure', 'value': 'Temp'},
+                    {'label': 'Vibration', 'value': 'Vib'},
+                    {'label': 'Flow', 'value': 'Flow'}
                     ],
                 value='NYC',
                 style={'width':'57%'}
@@ -286,45 +286,45 @@ def digitalinput_tab():
         
         html.H3("Digital Input"), #element 1
                 daq.Indicator(
-                id='my-toggle-switch',
+                id='my-toggle-switch-1',
                 value=True,
                 style={"marginBottom": 25},
                 ),#element 2
 
                 daq.Indicator(
-                id='my-toggle-switch',
+                id='my-toggle-switch-2',
                 value=False,
                 style={"marginBottom": 25}
                 ), #element 3
 
                 daq.Indicator(
-                id='my-toggle-switch',
+                id='my-toggle-switch-3',
                 value=False,
                 style={"marginBottom": 25}
                 ), #element 4
 
                 daq.Indicator(
-                id='my-toggle-switch',
+                id='my-toggle-switch-4',
                 value=False,
                 style={"marginBottom": 25}
                 ), #element 5
                 daq.Indicator(
-                id='my-toggle-switch',
+                id='my-toggle-switch-5',
                 value=False,
                 style={"marginBottom": 25}
                 ), #element 6
                 daq.Indicator(
-                id='my-toggle-switch',
+                id='my-toggle-switch-6',
                 label=False,
                 style={"marginBottom": 25}
                 ), #element 7
                 daq.Indicator(
-                id='my-toggle-switch',
+                id='my-toggle-switch-7',
                 value=False,
                 style={"marginBottom": 25}
                 ), #element 8
                 daq.Indicator(
-                id='my-toggle-switch',
+                id='my-toggle-switch-8',
                 value=False,
                 style={"marginBottom": 25, 'text-align': 'center'}
                 ), #element 9
@@ -336,47 +336,47 @@ def digitaloutput_tab():
         X = html.Div(children=[
                     html.H3("Digital Output"),
                     daq.BooleanSwitch(
-                    id='my-daq-booleanswitch',
+                    id='my-daq-booleanswitch-1',
                     on=True,
                     style={'paddingBottom': 25}
                 ),
                     daq.BooleanSwitch(
-                    id='my-daq-booleanswitch',
+                    id='my-daq-booleanswitch-2',
                     on=True,
                     style={'paddingBottom': 25}
                 ),
                     daq.BooleanSwitch(
-                    id='my-daq-booleanswitch',
+                    id='my-daq-booleanswitch-3',
                     on=True,
                     style={'paddingBottom': 25}
                 ),
                     daq.BooleanSwitch(
-                    id='my-daq-booleanswitch',
+                    id='my-daq-booleanswitch-4',
                     on=True,
                     style={'paddingBottom': 25}
                 ),
                     daq.BooleanSwitch(
-                    id='my-daq-booleanswitch',
+                    id='my-daq-booleanswitch-5',
                     on=True,
                     style={'paddingBottom': 25}
                 ),
                     daq.BooleanSwitch(
-                    id='my-daq-booleanswitch',
+                    id='my-daq-booleanswitch-6',
                     on=True,
                     style={'paddingBottom': 25}
                 ),
                     daq.BooleanSwitch(
-                    id='my-daq-booleanswitch',
+                    id='my-daq-booleanswitch-7',
                     on=True,
                     style={'paddingBottom': 25}
                 ),
                     daq.BooleanSwitch(
-                    id='my-daq-booleanswitch',
+                    id='my-daq-booleanswitch-8',
                     on=True,
                     style={'paddingBottom': 25}
                 ),
                 
-            ], style={'width': '30%', 'text-align': 'center', 'display':'inline-block'})
+            ], style={'width': '30%', 'text-a1ign': 'center', 'display':'inline-block'})
             
         return X   
 
@@ -386,23 +386,18 @@ app.layout = html.Div([
 ])
 
 
-index_page = html.Div([
+index_page = html.Div(children=[
 
-    html.Div([html.H3('Welcome to C-DAQ!')], style={'text-align':'center'}),
+    html.Div([html.Div([html.H3('Welcome to Portable C-DAQ!')], style={'text-align':'center'}),
     html.Br(),
-    html.Div([html.Img(src='assets/image2vector.svg')], style={'text-align':'center'}),
-    html.Br(),
-    html.Div([dcc.Link('Go to Temperature Sensors', href='/page-1')], style={'text-align':'center'}),
-    html.Br(),
-    html.Div([dcc.Link('Go to Thermocouple Sensors', href='/page-2')], style={'text-align':'center'}),
-    html.Br(),
-    html.Div([dcc.Link('Go to Analog Input Sensors', href='/page-3')], style={'text-align':'center'}),
-    html.Br(),
-    html.Div(dcc.Link('Go to Digital Input Sensors', href='/page-4'), style={'text-align':'center'}),
-    html.Br(),
-    html.Div(dcc.Link('Go to Digital Output Sensors', href='/page-5'), style={'text-align':'center'}),
-    ])
+    html.Div([html.Img(src='assets/image2vector (1).svg')], style={'text-align':'center'}),
+    html.Br()]),
 
+    html.Div([dcc.Link(html.Button('Go to Temperature Sensors', style={'backgroundColor':'white'}), href='/page-1'), dcc.Link(html.Button('Go to Thermocouple Sensors',  style={'backgroundColor':'white'}), href='/page-2')], style={'text-align':'center'}),
+    html.Br(),
+    html.Br(),
+    html.Div([dcc.Link(html.Button('Go to Analog Input Sensors', style={'backgroundColor':'white'}), href='/page-3'), dcc.Link(html.Button('Go to Digital Input Sensors', style={'backgroundColor':'white'}), href='/page-4'), dcc.Link(html.Button('Go to Digital Output Sensors', style={'backgroundColor':'white'}), href='/page-5')], style={'text-align':'center'})
+])
 page_1_layout = html.Div([
 
                     html.Div(
@@ -480,7 +475,7 @@ page_2_layout = html.Div([
                 ], className="container",style={'width':'98%','margin-left':10,'margin-right':10,'max-width':50000})
 
 
-page_3_layout = html.Div(analog_tab(), style={'display': 'inline-block'})
+page_3_layout = html.Div(analog_tab(), style={'textAlign': 'center'})
 page_4_layout = html.Div(digitalinput_tab(), style={'display': 'inline-block'})
 page_5_layout = html.Div(digitaloutput_tab(), style={'display': 'inline-block'})
 
