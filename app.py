@@ -6,6 +6,9 @@ import dash_daq as daq
 from collections import deque
 import plotly.graph_objs as go
 import random
+import analog_digital
+import thermometer
+
 from puller import getvalue
 
 times = deque(maxlen=50)
@@ -109,7 +112,11 @@ tab_selected_style = {
 }
 
 def analog_digital_func(times, data_lrange, data_urange, data_di, data_do):
+    analog_digital.di()
+    analog_digital.do()
 
+    thermometer.accelerometer()
+    thermometer.thermocouple()
     return 0
 
 def analog_tab():
