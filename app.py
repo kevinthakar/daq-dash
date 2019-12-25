@@ -6,10 +6,7 @@ import dash_daq as daq
 from collections import deque
 import plotly.graph_objs as go
 import random
-import analog_digital
-import thermometer
-
-from puller import getvalue
+#import Adafruit_ADS1x15
 
 times = deque(maxlen=50)
 thermocouple_1 = deque(maxlen=50)
@@ -112,16 +109,46 @@ tab_selected_style = {
 }
 
 def analog_digital_func(times, data_lrange, data_urange, data_di, data_do):
-    analog_digital.di()
-    analog_digital.do()
 
-    thermometer.accelerometer()
-    thermometer.thermocouple()
+    #upper = 1345
+    #lower = 25
+
+    #adc = Adafruit_ADS1x15.ADS1115()
+    #adc = Adafruit_ADS1x15.ADS1115(address=0x48, busnum=1)
+    #value1=adc.read_adc(0,gain=1)
+    #value1=((value1/32768.0)*4.096*10)
+    #value1=(((value1-4)/16)*(upper-lower))+ lower #Converting current to temperature through slope curve method
+    #press = round(value1, 5)
     return 0
+
 
 def analog_tab():
     X = html.Div(children=[
-        html.H3('Analog Input'), #element1
+        html.Div(
+                        id="banner",
+                        className="banner",
+                        children=[
+
+                        html.Div(
+                        id="banner-text",
+                        children=[
+                            html.H5("Data Acquisition Metrics"),
+                        ]),
+
+                html.Div(
+                    id="about-us-button",
+                    children=[
+                    html.Div(
+                    children=[
+                        html.H5(children="Citriot Solutions", n_clicks=0),
+                        html.H6(children="Think. Engineer.", n_clicks=0),
+                        ]),
+                html.Img(src='assets/citriot_logo.jpg')
+            ]),
+            dcc.Link('Go back to home', href='/'),
+        
+            ]),
+        html.Div([html.H3('Analog Input')], style={'text-align':'center'}), #element1
             html.Div([
                 dcc.Dropdown(
                 id='demo-dropdown',
@@ -216,7 +243,7 @@ def analog_tab():
                 daq.NumericInput(
                 id='my-numeric-input',
                 value=0,
-                style={'paddingBottom': 30, 'display':'inline-block', 'paddingRight': '4%' }
+                style={'paddingBottom': 30, 'paddingRight': '4%' }
                 ),
                 daq.NumericInput(
                 id='my-numeric-input',
@@ -290,100 +317,176 @@ def analog_tab():
 
 def digitalinput_tab():
     X = html.Div(children=[
+
+        html.Div(
+                        id="banner",
+                        className="banner",
+                        children=[
+
+                        html.Div(
+                        id="banner-text",
+                        children=[
+                            html.H5("Data Acquisition Metrics"),
+                        ]),
+
+                html.Div(
+                    id="about-us-button",
+                    children=[
+                    html.Div(
+                    children=[
+                        html.H5(children="Citriot Solutions", n_clicks=0),
+                        html.H6(children="Think. Engineer.", n_clicks=0),
+                        ]),
+                html.Img(src='assets/citriot_logo.jpg')
+            ]),
+            dcc.Link('Go back to home', href='/'),
         
-        html.H3("Digital Input"), #element 1
-                daq.Indicator(
+            ]),
+        
+        html.H3("Digital Input", style={'text-align':'center'}), #element 1
+                
+        html.Div([
+            daq.Indicator(
                 id='my-toggle-switch-1',
                 value=True,
+                color='#ff0000',
+                label="DI 1",
                 style={"marginBottom": 25},
                 ),#element 2
 
                 daq.Indicator(
                 id='my-toggle-switch-2',
-                value=False,
+                value=True,
+                color='#ff0000',
+                label="DI 2",
                 style={"marginBottom": 25}
                 ), #element 3
 
                 daq.Indicator(
                 id='my-toggle-switch-3',
-                value=False,
+                value=True,
+                color='#ff0000',
+                label="DI 3",
                 style={"marginBottom": 25}
                 ), #element 4
 
                 daq.Indicator(
                 id='my-toggle-switch-4',
-                value=False,
+                value=True,
+                color='#ff0000',
+                label="DI 4",
                 style={"marginBottom": 25}
                 ), #element 5
                 daq.Indicator(
                 id='my-toggle-switch-5',
-                value=False,
+                value=True,
+                color='#ff0000',
+                label="DI 5",
                 style={"marginBottom": 25}
                 ), #element 6
                 daq.Indicator(
                 id='my-toggle-switch-6',
-                label=False,
+                value=True,
+                label="DI 6",
+                color='#ff0000',
                 style={"marginBottom": 25}
                 ), #element 7
                 daq.Indicator(
                 id='my-toggle-switch-7',
-                value=False,
+                value=True,
+                color='#ff0000',
+                label="DI 7",
                 style={"marginBottom": 25}
                 ), #element 8
                 daq.Indicator(
                 id='my-toggle-switch-8',
-                value=False,
+                value=True,
+                color='#ff0000',
+                label="DI 8",
                 style={"marginBottom": 25, 'text-align': 'center'}
-                ), #element 9
-            ], style={'width':'30%', 'marginLeft': 80, 'text-align': 'center', 'display':'inline-block '})
+                )
+            ]), #element 9
+            ])
     return X
 
 def digitaloutput_tab():
 
         X = html.Div(children=[
-                    html.H3("Digital Output"),
+                    html.Div(
+                        id="banner",
+                        className="banner",
+                        children=[
+
+                        html.Div(
+                        id="banner-text",
+                        children=[
+                            html.H5("Data Acquisition Metrics"),
+                        ]),
+
+                html.Div(
+                    id="about-us-button",
+                    children=[
+                    html.Div(
+                    children=[
+                        html.H5(children="Citriot Solutions", n_clicks=0),
+                        html.H6(children="Think. Engineer.", n_clicks=0),
+                        ]),
+                html.Img(src='assets/citriot_logo.jpg')
+            ]),
+            dcc.Link('Go back to home', href='/'),
+        
+            ]), 
+                    html.H3("Digital Output", style={'text-align':'center'}),
                     daq.BooleanSwitch(
                     id='my-daq-booleanswitch-1',
                     on=True,
+                    label='DO 1',
                     style={'paddingBottom': 25}
                 ),
                     daq.BooleanSwitch(
                     id='my-daq-booleanswitch-2',
                     on=True,
+                    label='DO 2',
                     style={'paddingBottom': 25}
                 ),
                     daq.BooleanSwitch(
                     id='my-daq-booleanswitch-3',
                     on=True,
+                    label='DO 3',
                     style={'paddingBottom': 25}
                 ),
                     daq.BooleanSwitch(
                     id='my-daq-booleanswitch-4',
                     on=True,
+                    label='DO 4',
                     style={'paddingBottom': 25}
                 ),
                     daq.BooleanSwitch(
                     id='my-daq-booleanswitch-5',
                     on=True,
+                    label='DO 5',
                     style={'paddingBottom': 25}
                 ),
                     daq.BooleanSwitch(
                     id='my-daq-booleanswitch-6',
                     on=True,
+                    label='DO 6',
                     style={'paddingBottom': 25}
                 ),
                     daq.BooleanSwitch(
                     id='my-daq-booleanswitch-7',
                     on=True,
+                    label='DO 7',
                     style={'paddingBottom': 25}
                 ),
                     daq.BooleanSwitch(
                     id='my-daq-booleanswitch-8',
                     on=True,
+                    label='DO 8',
                     style={'paddingBottom': 25}
                 ),
                 
-            ], style={'width': '30%', 'text-a1ign': 'center', 'display':'inline-block'})
+            ], style={'text-a1ign': 'center'})
             
         return X   
 
@@ -436,7 +539,7 @@ page_1_layout = html.Div([
                                 value=['Thermocouple 1'],
                                 multi=True),
                     ]),
-                    html.Div(children=html.Div(id='graphop1'), className='row'),
+                    html.Div(children=[html.Div(id='graphop1')], className='row'),
                     dcc.Interval(
                     id='graph-update',
                     interval=100),
@@ -467,7 +570,7 @@ page_2_layout = html.Div([
                         ]),
                 html.Img(src='assets/citriot_logo.jpg')
             ]),
-            dcc.Link('Go back to home', href='/'),
+            dcc.Link(html.Button('Go back to home'), href='/'),
         
             ]),
                 html.Div([dcc.Dropdown(id='dropdownlist2',
@@ -475,16 +578,13 @@ page_2_layout = html.Div([
                                 value=['Accelerometer 1'],
                                 multi=True),
                     ]),
-                    html.Div(children=html.Div(id='graphop2'), className='row'),
-                    dcc.Interval(
-                    id='graph-update',
-                    interval=100),
+                    html.Div(children=html.Div(id='posxyz'), className='row'),
                 ], className="container",style={'width':'98%','margin-left':10,'margin-right':10,'max-width':50000})
 
 
-page_3_layout = html.Div(analog_tab(), style={'textAlign': 'center'})
-page_4_layout = html.Div(digitalinput_tab(), style={'display': 'inline-block'})
-page_5_layout = html.Div(digitaloutput_tab(), style={'display': 'inline-block'})
+page_3_layout = html.Div(analog_tab())
+page_4_layout = html.Div(digitalinput_tab())
+page_5_layout = html.Div(digitaloutput_tab())
 
 
 
@@ -583,10 +683,10 @@ def update_graph(data_names, n):
 
 
 @app.callback(
-    dash.dependencies.Output('graphop2','children'),
+    dash.dependencies.Output('posxyz','children'),
     [dash.dependencies.Input('dropdownlist2', 'value'), dash.dependencies.Input('graph-update', 'interval')]
     )
-def update_graph(data_names, n):
+def display_accel(data_names, n):
 
     graphs = []
     update_accelerometer_values(times, accelerometer_1, accelerometer_2, accelerometer_3)
@@ -617,7 +717,65 @@ def update_graph(data_names, n):
                                                         title='{}'.format(data_name))}
             ), className=class_choice))
 
-    return graphs
+    return html.Div([
+            html.Div([
+                html.H3("G-Force")
+            ], className='Title'),
+            html.Div([
+                html.Div([
+                    html.Div(
+                        "X-axis:",
+                        style={'textAlign': 'right'},
+                        className="three columns"),
+                    html.Div(
+                        id="x-value",
+                        className="one columns",
+                        style={'marginRight': '20px'}),
+                    html.Div(
+                        "g",
+                        className="one columns")
+                ], className="row"),
+                html.Div([
+                    html.Div(
+                        "Y-axis:",
+                        style={'textAlign': 'right'},
+                        className="three columns"),
+                    html.Div(
+                        id="y-value",
+                        className="one columns",
+                        style={'marginRight': '20px'}),
+                    html.Div(
+                        "g",
+                        className="one columns")
+                ], className="row"),
+                html.Div([
+                    html.Div(
+                        "Z-axis:",
+                        style={'textAlign': 'right'},
+                        className="three columns"),
+                    html.Div(
+                        id="z-value",
+                        className="one columns",
+                        style={'marginRight': '20px'}),
+                    html.Div(
+                        "g",
+                        className="one columns")
+                ], className="row"),
+                html.Div([
+                    html.Div(
+                        "Time Stamp:",
+                        style={'textAlign': 'right'},
+                        className="three columns"),
+                    html.Div(
+                        id="time-stamp",
+                        className="one columns",
+                        style={'marginRight': '10px'}),
+                    html.Div(
+                        "s",
+                        className="one columns")
+                ], className="row"),
+            ]),
+        ], className="six columns")
 
 
 
