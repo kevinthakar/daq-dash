@@ -7,7 +7,10 @@ from collections import deque
 import plotly.graph_objs as go
 import random
 #import Adafruit_ADS1x15
-
+external_css = ["https://codepen.io/chriddyp/pen/bWLwgP.css",
+                "https://cdn.rawgit.com/samisahn/dash-app-stylesheets/" +
+                "0925c314/dash-accelerometer.css",
+                "https://fonts.googleapis.com/css?family=Dosis"]
 times = deque(maxlen=50)
 thermocouple_1 = deque(maxlen=50)
 thermocouple_2 = deque(maxlen=50)
@@ -84,7 +87,7 @@ data_do = {"do1": do1,
 "do7": do7,
 "do8": do8}
  
-app = dash.Dash('data-logger')
+app = dash.Dash('data-logger', external_stylesheets=external_css)
 app.title = 'Citriot'
 
 app.config['suppress_callback_exceptions'] = True
@@ -578,7 +581,95 @@ page_2_layout = html.Div([
                                 value=['Accelerometer 1'],
                                 multi=True),
                     ]),
-                    html.Div(children=html.Div(id='posxyz'), className='row'),
+                    html.Div(children=html.Div(id='posxyz', children=[html.Div([
+            html.Div([
+                html.H3("G-Force")
+            ], className='Title'),
+            html.Div([
+                html.Div([
+                    html.Div(
+                        "X-axis:",
+                        style={'textAlign': 'right'},
+                        className="three columns"),
+                    html.Div(
+                        id="x-value",
+                        className="one columns",
+                        style={'marginRight': '20px'}),
+                    html.Div(
+                        "g",
+                        className="one columns")
+                ], className="row"),
+                html.Div([
+                    html.Div(
+                        "Y-axis:",
+                        style={'textAlign': 'right'},
+                        className="three columns"),
+                    html.Div(
+                        id="y-value",
+                        className="one columns",
+                        style={'marginRight': '20px'}),
+                    html.Div(
+                        "g",
+                        className="one columns")
+                ], className="row"),
+                html.Div([
+                    html.Div(
+                        "Z-axis:",
+                        style={'textAlign': 'right'},
+                        className="three columns"),
+                    html.Div(
+                        id="z-value",
+                        className="one columns",
+                        style={'marginRight': '20px'}),
+                    html.Div(
+                        "g",
+                        className="one columns")
+                ], className="row"),
+                html.Div([
+                    html.Div(
+                        "Time Stamp:",
+                        style={'textAlign': 'right'},
+                        className="three columns"),
+                    html.Div(
+                        id="time-stamp",
+                        className="one columns",
+                        style={'marginRight': '10px'}),
+                    html.Div(
+                        "s",
+                        className="one columns")
+                ], className="row"),
+            ]),
+        ], className="six columns"),
+
+        html.Div([
+            html.Div([
+                daq.Gauge(
+                    id="x-gauge",
+                    label="X-axis",
+                    labelPosition="bottom",
+                    units="g",
+                    value=0,
+                    min=-8,
+                    max=8,
+                    showCurrentValue=True
+                )
+            ], className='six columns', style={'margin-bottom': '15px'}),
+
+            html.Div([
+                daq.Gauge(
+                    id="y-gauge",
+                    label="Y-axis",
+                    labelPosition="bottom",
+                    units="g",
+                    value=0,
+                    min=-8,
+                    max=8,
+                    showCurrentValue=True,
+                )
+            ], className='six columns'),
+        ], style={'margin': '15px 0'})
+        ]),
+                         className='row'),
                 ], className="container",style={'width':'98%','margin-left':10,'margin-right':10,'max-width':50000})
 
 
@@ -717,68 +808,11 @@ def display_accel(data_names, n):
                                                         title='{}'.format(data_name))}
             ), className=class_choice))
 
-    return html.Div([
-            html.Div([
-                html.H3("G-Force")
-            ], className='Title'),
-            html.Div([
-                html.Div([
-                    html.Div(
-                        "X-axis:",
-                        style={'textAlign': 'right'},
-                        className="three columns"),
-                    html.Div(
-                        id="x-value",
-                        className="one columns",
-                        style={'marginRight': '20px'}),
-                    html.Div(
-                        "g",
-                        className="one columns")
-                ], className="row"),
-                html.Div([
-                    html.Div(
-                        "Y-axis:",
-                        style={'textAlign': 'right'},
-                        className="three columns"),
-                    html.Div(
-                        id="y-value",
-                        className="one columns",
-                        style={'marginRight': '20px'}),
-                    html.Div(
-                        "g",
-                        className="one columns")
-                ], className="row"),
-                html.Div([
-                    html.Div(
-                        "Z-axis:",
-                        style={'textAlign': 'right'},
-                        className="three columns"),
-                    html.Div(
-                        id="z-value",
-                        className="one columns",
-                        style={'marginRight': '20px'}),
-                    html.Div(
-                        "g",
-                        className="one columns")
-                ], className="row"),
-                html.Div([
-                    html.Div(
-                        "Time Stamp:",
-                        style={'textAlign': 'right'},
-                        className="three columns"),
-                    html.Div(
-                        id="time-stamp",
-                        className="one columns",
-                        style={'marginRight': '10px'}),
-                    html.Div(
-                        "s",
-                        className="one columns")
-                ], className="row"),
-            ]),
-        ], className="six columns")
+    return graphs
 
-
-
+#
+#for css in external_css:
+ #   app.css.append_css({"external_url": css})
 
 
 if __name__ == '__main__':
