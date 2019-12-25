@@ -148,30 +148,33 @@ def analog_tab():
                         ]),
                 html.Img(src='assets/citriot_logo.jpg')
             ]),
-            dcc.Link('Go back to home', href='/'),
+            dcc.Link(html.Button('Go back to home', style={'backgroundColor':'white'}), href='/'),
         
             ]),
         html.Div([html.H3('Analog Input')], style={'text-align':'center'}), #element1
             html.Div([
-                dcc.Dropdown(
-                id='demo-dropdown',
-                options=[
-                    {'label': 'Pressure', 'value': 'Temp'},
-                    {'label': 'Vibration', 'value': 'Vib'},
-                    {'label': 'Flow', 'value': 'Flow'}
-                    ],
-                value='Temp',
-                style={'width':'57%'}),
-                daq.NumericInput(
-                id='my-numeric-input',
-                value=0,
-                style={'paddingBottom': 30, 'display':'inline-block', 'paddingRight': '4%' }
-                ),
-                daq.NumericInput(
-                id='my-numeric-input',
-                value=0,
-                style={'paddingBottom': 30, 'display':'inline-block'}
-                )]), #element 2
+                html.Div([
+                    dcc.Dropdown(
+                    id='demo-dropdown',
+                    options=[
+                        {'label': 'Pressure', 'value': 'Temp'},
+                        {'label': 'Vibration', 'value': 'Vib'},
+                        {'label': 'Flow', 'value': 'Flow'}
+                        ],
+                    value='Temp',
+                    style={'width':'57%'}),
+                    daq.NumericInput(
+                    id='my-numeric-input',
+                    value=0,
+                    label='AI 1 Upper Range',
+                    style={'paddingBottom': 30, 'paddingTop':30, 'display':'inline-block', 'paddingRight': '4%' }
+                    ),
+                    daq.NumericInput(
+                    id='my-numeric-input',
+                    value=0,
+                    label='AI 1 Lower Range',
+                    style={'paddingBottom': 30, 'paddingTop':30, 'display':'inline-block'}
+                    )]), #element 2
             html.Div([
                 dcc.Dropdown(
                 id='demo-dropdown',
@@ -185,12 +188,13 @@ def analog_tab():
                 daq.NumericInput(
                 id='my-numeric-input',
                 value=0,
-                style={'paddingBottom': 30, 'display':'inline-block', 'paddingRight': '4%' }
-                ),
+                label='AI 2 Upper Range',
+                style={'paddingBottom': 30, 'paddingTop':30, 'display':'inline-block'}                ),
                 daq.NumericInput(
                 id='my-numeric-input',
                 value=0,
-                style={'paddingBottom': 30, 'display':'inline-block'}
+                label='AI 2 Lower Range',
+                style={'paddingBottom': 30, 'paddingTop':30, 'display':'inline-block'}
                 ),
                 ]), #element 3
             html.Div([
@@ -205,13 +209,15 @@ def analog_tab():
                 style={'width':'57%'}),
                 daq.NumericInput(
                 id='my-numeric-input',
+                label='AI 3 Upper Range',
                 value=0,
-                style={'paddingBottom': 30, 'display':'inline-block', 'paddingRight': '4%' }
+                style={'paddingBottom': 30, 'paddingTop':30, 'display':'inline-block'}
                 ),
                 daq.NumericInput(
                 id='my-numeric-input',
                 value=0,
-                style={'paddingBottom': 30, 'display':'inline-block'}),
+                label='AI 3 Lower Range',
+                style={'paddingBottom': 30, 'paddingTop':30, 'display':'inline-block'}),
             ]), #element 4
             html.Div([
                 dcc.Dropdown(
@@ -226,12 +232,14 @@ def analog_tab():
                 daq.NumericInput(
                 id='my-numeric-input',
                 value=0,
-                style={'paddingBottom': 30, 'display':'inline-block', 'paddingRight': '4%' }
+                label='AI 4 Upper Range',
+                style={'paddingBottom': 30, 'paddingTop':30, 'display':'inline-block', 'paddingRight': '4%' }
                 ),
                 daq.NumericInput(
                 id='my-numeric-input',
                 value=0,
-                style={'paddingBottom': 30, 'display':'inline-block'}),
+                label='AI 4 Lower Range',
+                style={'paddingBottom': 30, 'paddingTop':30, 'display':'inline-block'}),
             ]), #element 5
             html.Div([
                 dcc.Dropdown(
@@ -246,12 +254,14 @@ def analog_tab():
                 daq.NumericInput(
                 id='my-numeric-input',
                 value=0,
-                style={'paddingBottom': 30, 'paddingRight': '4%' }
+                label='AI 5 Upper Range',
+                style={'paddingBottom': 30,  'paddingTop':30, 'display':'inline-block' }
                 ),
                 daq.NumericInput(
                 id='my-numeric-input',
                 value=0,
-                style={'paddingBottom': 30, 'display':'inline-block'}),
+                label='AI 5 Lower Range',
+                style={'paddingBottom': 30,  'paddingTop':30, 'display':'inline-block'}),
             ]), #element 6
             html.Div([
                 dcc.Dropdown(
@@ -266,12 +276,14 @@ def analog_tab():
                 daq.NumericInput(
                 id='my-numeric-input',
                 value=0,
-                style={'paddingBottom': 30, 'display':'inline-block', 'paddingRight': '4%' }
+                label='AI 6 Upper Range',
+                style={'paddingBottom': 30, 'paddingTop':30, 'display':'inline-block', 'paddingRight': '4%' }
                 ),
                 daq.NumericInput(
                 id='my-numeric-input',
                 value=0,
-                style={'paddingBottom': 30, 'display':'inline-block'}),
+                label='AI 6 Lower Range',
+                style={'paddingBottom': 30, 'paddingTop':30, 'display':'inline-block'}),
             ]), #element 7
             html.Div([
                 dcc.Dropdown(
@@ -286,12 +298,14 @@ def analog_tab():
                 daq.NumericInput(
                 id='my-numeric-input',
                 value=0,
-                style={'paddingBottom': 30, 'display':'inline-block', 'paddingRight': '4%' }
+                label='AI 7 Upper Range',
+                style={'paddingBottom': 30, 'paddingTop':30, 'display':'inline-block', 'paddingRight': '4%' }
                 ),
                 daq.NumericInput(
                 id='my-numeric-input',
                 value=0,
-                style={'paddingBottom': 30, 'display':'inline-block'}),
+                label='AI 7 Lower Range',
+                style={'paddingBottom': 30, 'paddingTop':30, 'display':'inline-block'}),
             ]), #element 8
             html.Div([
                 dcc.Dropdown(
@@ -307,13 +321,16 @@ def analog_tab():
                 daq.NumericInput(
                 id='my-numeric-input',
                 value=0,
-                style={'paddingBottom': 30, 'display':'inline-block', 'paddingRight': '4%' }
+                label='AI 8 Upper Range',
+                style={'paddingBottom': 30, 'paddingTop':30, 'display':'inline-block', 'paddingRight': '4%' }
                 ),
                 daq.NumericInput(
                 id='my-numeric-input',
                 value=0,
-                style={'paddingBottom': 30, 'display':'inline-block'}),
-                ]) #element 9
+                label='AI 8 Lower Range',
+                style={'paddingBottom': 30, 'paddingTop':30, 'display':'inline-block'}),
+                ])
+             ],) #element 9
             ])
 
     return X
@@ -342,8 +359,7 @@ def digitalinput_tab():
                         ]),
                 html.Img(src='assets/citriot_logo.jpg')
             ]),
-            dcc.Link('Go back to home', href='/'),
-        
+dcc.Link(html.Button('Go back to home', style={'backgroundColor':'white'}), href='/'),        
             ]),
         
         html.H3("Digital Input", style={'text-align':'center'}), #element 1
@@ -436,8 +452,7 @@ def digitaloutput_tab():
                         ]),
                 html.Img(src='assets/citriot_logo.jpg')
             ]),
-            dcc.Link('Go back to home', href='/'),
-        
+dcc.Link(html.Button('Go back to home', style={'backgroundColor':'white'}), href='/'),        
             ]), 
                     html.H3("Digital Output", style={'text-align':'center'}),
                     daq.BooleanSwitch(
@@ -534,8 +549,7 @@ page_1_layout = html.Div([
                         ]),
                 html.Img(src='assets/citriot_logo.jpg')
             ]),
-            dcc.Link('Go back to home', href='/'),
-        
+dcc.Link(html.Button('Go back to home', style={'backgroundColor':'white'}), href='/'),        
             ]),
                 html.Div([dcc.Dropdown(id='dropdownlist1',
                                 options = [{'label': s, 'value': s} for s in data_thermocouple.keys()],
@@ -573,104 +587,45 @@ page_2_layout = html.Div([
                         ]),
                 html.Img(src='assets/citriot_logo.jpg')
             ]),
-            dcc.Link(html.Button('Go back to home'), href='/'),
-        
+dcc.Link(html.Button('Go back to home', style={'backgroundColor':'white'}), href='/'),        
             ]),
                 html.Div([dcc.Dropdown(id='dropdownlist2',
                                 options = [{'label': s, 'value': s} for s in data_accelerometer.keys()],
                                 value=['Accelerometer 1'],
                                 multi=True),
                     ]),
-                    html.Div(children=html.Div(id='posxyz', children=[html.Div([
-            html.Div([
-                html.H3("G-Force")
-            ], className='Title'),
-            html.Div([
-                html.Div([
-                    html.Div(
-                        "X-axis:",
-                        style={'textAlign': 'right'},
-                        className="three columns"),
-                    html.Div(
-                        id="x-value",
-                        className="one columns",
-                        style={'marginRight': '20px'}),
-                    html.Div(
-                        "g",
-                        className="one columns")
-                ], className="row"),
-                html.Div([
-                    html.Div(
-                        "Y-axis:",
-                        style={'textAlign': 'right'},
-                        className="three columns"),
-                    html.Div(
-                        id="y-value",
-                        className="one columns",
-                        style={'marginRight': '20px'}),
-                    html.Div(
-                        "g",
-                        className="one columns")
-                ], className="row"),
-                html.Div([
-                    html.Div(
-                        "Z-axis:",
-                        style={'textAlign': 'right'},
-                        className="three columns"),
-                    html.Div(
-                        id="z-value",
-                        className="one columns",
-                        style={'marginRight': '20px'}),
-                    html.Div(
-                        "g",
-                        className="one columns")
-                ], className="row"),
-                html.Div([
-                    html.Div(
-                        "Time Stamp:",
-                        style={'textAlign': 'right'},
-                        className="three columns"),
-                    html.Div(
-                        id="time-stamp",
-                        className="one columns",
-                        style={'marginRight': '10px'}),
-                    html.Div(
-                        "s",
-                        className="one columns")
-                ], className="row"),
-            ]),
-        ], className="six columns"),
+                    html.Div(children=[html.Div(id='posxyz',
+                    children=[
+                              html.Div([
+                                    daq.Gauge(
+                                        id="x-gauge",
+                                        label="X-axis",
+                                        labelPosition="bottom",
+                                units="g",
+                                value=0,
+                                min=-8,
+                                max=8,
+                                showCurrentValue=True
+                            )
+                        ], className='six columns', style={'margin-bottom': '15px'}),
 
-        html.Div([
-            html.Div([
-                daq.Gauge(
-                    id="x-gauge",
-                    label="X-axis",
-                    labelPosition="bottom",
-                    units="g",
-                    value=0,
-                    min=-8,
-                    max=8,
-                    showCurrentValue=True
-                )
-            ], className='six columns', style={'margin-bottom': '15px'}),
+                        html.Div([
+                            daq.Gauge(
+                                id="y-gauge",
+                                label="Y-axis",
+                                labelPosition="bottom",
+                                units="g",
+                                value=0,
+                                min=-8,
+                                max=8,
+                                showCurrentValue=True,
+                            )
+                        ], className='six columns'),
 
-            html.Div([
-                daq.Gauge(
-                    id="y-gauge",
-                    label="Y-axis",
-                    labelPosition="bottom",
-                    units="g",
-                    value=0,
-                    min=-8,
-                    max=8,
-                    showCurrentValue=True,
-                )
-            ], className='six columns'),
-        ], style={'margin': '15px 0'})
-        ]),
-                         className='row'),
-                ], className="container",style={'width':'98%','margin-left':10,'margin-right':10,'max-width':50000})
+                        
+                        ])],
+                                    className='row'),
+                            ], className="container",style={'width':'98%','margin-left':10,'margin-right':10,'max-width':50000})
 
 
 page_3_layout = html.Div(analog_tab())
