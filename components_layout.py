@@ -33,7 +33,7 @@ app = dash.Dash('data-logger', external_stylesheets=external_css)
 app.title = 'Citriot'
 
 app.config['suppress_callback_exceptions'] = True
-
+val = 12.55
 
 def show_values_tab():
 
@@ -67,42 +67,50 @@ def show_values_tab():
     daq.LEDDisplay(
     label="T 1 (Centigrade)",
     labelPosition='top',
-    value='12:34'),
+    color='red',
+    value=val),
 
     daq.LEDDisplay(
     label="T 2 (Centigrade)",
     labelPosition='top',
-    value='12:34'),
+    color='red',
+    value='12.34'),
 
     daq.LEDDisplay(
     label="T 3 (Centigrade)",
     labelPosition='top',
-    value='12:34'),
+    color='red',
+    value='12.34'),
 
     daq.LEDDisplay(
     label="T 4 (Centigrade)",
     labelPosition='top',
-    value='12:34'),
+    color='red',
+    value='12.34'),
 
     daq.LEDDisplay(
     label="T 5 (Centigrade)",
     labelPosition='top',
-    value='12:34'),
+    color='red',
+    value='12.34'),
 
     daq.LEDDisplay(
     label="T 6 (Centigrade)",
     labelPosition='top',
-    value='12:34'),
+    color='red',
+    value='12.34'),
 
     daq.LEDDisplay(
     label="T 7 (Centigrade)",
     labelPosition='top',
-    value='12:34'),
+    color='red',
+    value='12.34'),
 
     daq.LEDDisplay(
     label="T 8 (Centigrade)",
     labelPosition='top',
-    value='12:34')
+    color='red',
+    value='12.34')
     
       ])
     return x
@@ -589,10 +597,10 @@ index_page = html.Div(children=[
     html.Div([html.Img(src='assets/image2vector (1).svg')], style={'text-align':'center'}),
     html.Br()]),
 
-    html.Div([dcc.Link(html.Button('Go to Temperature Sensors', style={'backgroundColor':'white'}), href='/page-1'), dcc.Link(html.Button('Go to Thermocouple Readings', style={'backgroundColor':'white'}), href='/page-6'), dcc.Link(html.Button('Go to Thermocouple Sensors',  style={'backgroundColor':'white'}), href='/page-2')], style={'text-align':'center'}),
+    html.Div([dcc.Link(html.Button('Go to Temperature Sensors', style={'backgroundColor':'white'}), href='/page-1'), dcc.Link(html.Button('Go to Thermocouple Readings', style={'backgroundColor':'white'}), href='/page-6'), dcc.Link(html.Button('Go to Accelerometer Sensors',  style={'backgroundColor':'white'}), href='/page-2')], style={'text-align':'center'}),
     html.Br(),
     html.Br(),
-    html.Div([dcc.Link(html.Button('Go to Analog Input Sensors', style={'backgroundColor':'white'}), href='/page-3'),dcc.Link(html.Button('Go to Analog Sensor Readings', style={'backgroundColor':'white'}), href='/page-7'), dcc.Link(html.Button('Go to Digital Input Sensors', style={'backgroundColor':'white'}), href='/page-4'), dcc.Link(html.Button('Go to Digital Output Sensors', style={'backgroundColor':'white'}), href='/page-5')], style={'text-align':'center'})
+    html.Div([dcc.Link(html.Button('Go to Analog Input Sensors (AI)', style={'backgroundColor':'white'}), href='/page-3'),dcc.Link(html.Button('Go to Analog Sensor Readings', style={'backgroundColor':'white'}), href='/page-7'), dcc.Link(html.Button('Go to Digital Input Sensors (DI)', style={'backgroundColor':'white'}), href='/page-4'), dcc.Link(html.Button('Go to Digital Output Sensors (DO)', style={'backgroundColor':'white'}), href='/page-5')], style={'text-align':'center'})
 ])
 page_1_layout = html.Div([
 
@@ -657,6 +665,7 @@ page_2_layout = html.Div([
             ]),
 dcc.Link(html.Button('Go back to home', style={'backgroundColor':'white'}), href='/'),        
             ]),
+
                 html.Div([dcc.Dropdown(id='dropdownlist2',
                                 options = [{'label': s, 'value': s} for s in data_accelerometer.keys()],
                                 value=['Accelerometer 1'],
@@ -664,21 +673,19 @@ dcc.Link(html.Button('Go back to home', style={'backgroundColor':'white'}), href
                     ]),
                     html.Div(children=[html.Div(id='posxyz',
                     children=[
-                              html.Div([
-                                    daq.Gauge(
-                                        id="x-gauge",
-                                        label="X-axis",
-                                        labelPosition="bottom",
-                                units="g",
-                                value=0,
-                                min=-8,
-                                max=8,
-                                showCurrentValue=True
-                            )
-                        ], className='six columns', style={'margin-bottom': '15px'}),
+                                html.Div([daq.Gauge(
+                                    id="x-gauge",
+                                    label="X-axis",
+                                    labelPosition="bottom",
+                                    units="g",
+                                    value=0,
+                                    min=-8,
+                                    max=8,
+                                    showCurrentValue=True
+                            ),], style={'display':'inline-block', 'paddingLeft':50, 'paddingRight':50}),
+                        
 
-                        html.Div([
-                            daq.Gauge(
+                            html.Div([daq.Gauge(
                                 id="y-gauge",
                                 label="Y-axis",
                                 labelPosition="bottom",
@@ -687,13 +694,23 @@ dcc.Link(html.Button('Go back to home', style={'backgroundColor':'white'}), href
                                 min=-8,
                                 max=8,
                                 showCurrentValue=True,
-                            )
-                        ], className='six columns'),
+                            ),], style={'display':'inline-block', 'paddingLeft':50, 'paddingRight':50}),
 
-                        
-                        ])],
-                                    className='row'),
-                            ], className="container",style={'width':'98%','margin-left':10,'margin-right':10,'max-width':50000})
+                            html.Div([daq.Gauge(
+                                id="z-gauge",
+                                label="Z-axis",
+                                labelPosition="bottom",
+                                units="g",
+                                value=0,
+                                min=-8,
+                                max=8,
+                                showCurrentValue=True,
+                            )], style={'display':'inline-block', 'paddingLeft':50, 'paddingRight':50})
+                        ],
+                        style={'text-align':'center'}
+                    )
+                ]
+            )])
 
 
 page_3_layout = html.Div(analog_tab())
