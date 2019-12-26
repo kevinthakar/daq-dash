@@ -589,6 +589,7 @@ app.layout = html.Div([
         html.Div(id='page-content')
 ])
 
+a = 0
 
 index_page = html.Div(children=[
 
