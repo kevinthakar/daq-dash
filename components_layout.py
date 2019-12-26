@@ -1,9 +1,11 @@
+#!/home/pi/MyDAQApp/daq/bin/python3
+
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
 import dash_daq as daq
 from variables import *
-
+import RPi.GPIO as GPIO
 tab_style = {
     'borderBottom': '1px solid #d6d6d6',
 
@@ -34,6 +36,30 @@ app.title = 'Citriot'
 
 app.config['suppress_callback_exceptions'] = True
 val = 12.55
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(5, GPIO.IN)
+GPIO.setup(6, GPIO.IN)
+GPIO.setup(13, GPIO.IN)
+GPIO.setup(19, GPIO.IN)
+GPIO.setup(26, GPIO.IN)
+GPIO.setup(16, GPIO.IN)
+GPIO.setup(20, GPIO.IN)
+GPIO.setup(21, GPIO.IN)
+GPIO.setup(4, GPIO.OUT)
+GPIO.setup(17, GPIO.OUT)
+GPIO.setup(18, GPIO.OUT)
+
+v1=GPIO.input(5)
+v2=GPIO.input(6)
+v3=GPIO.input(13)
+v4=GPIO.input(19)
+v5=GPIO.input(26)
+v6=GPIO.input(16)
+v7=GPIO.input(20)
+v8=GPIO.input(21)
+
+print(v1,v2)
 
 def show_values_tab():
 
@@ -443,7 +469,7 @@ dcc.Link(html.Button('Go back to home', style={'backgroundColor':'white'}), href
         html.Div([
             daq.Indicator(
                 id='my-toggle-switch-1',
-                value=True,
+                value=v1,
                 color='#ff0000',
                 label="DI 1",
                 style={"marginBottom": 25},
@@ -451,7 +477,7 @@ dcc.Link(html.Button('Go back to home', style={'backgroundColor':'white'}), href
 
                 daq.Indicator(
                 id='my-toggle-switch-2',
-                value=True,
+                value=v2,
                 color='#ff0000',
                 label="DI 2",
                 style={"marginBottom": 25}
