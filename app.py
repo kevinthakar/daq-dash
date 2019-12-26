@@ -51,26 +51,27 @@ def update_accelerometer_values(times, accelerometer_1, accelerometer_2, acceler
 
 times, accelerometer_1, accelerometer_2, accelerometer_3 = update_accelerometer_values(times, accelerometer_1, accelerometer_2, accelerometer_3)
 
-
-@app.callback(dash.dependencies.Output('page-content', 'children'),
+if 1==1:
+    @app.callback(dash.dependencies.Output('page-content', 'children'),
               [dash.dependencies.Input('url', 'pathname')])
-def display_page(pathname):
-    if pathname == '/page-1':
-        return page_1_layout
-    elif pathname == '/page-2':
-        return page_2_layout
-    elif pathname == '/page-3':
-        return page_3_layout
-    elif pathname == '/page-4':
-        return page_4_layout
-    elif pathname == '/page-5':
-        return page_5_layout
-    elif pathname == '/page-6':
-        return page_6_layout
-    elif pathname == '/page-7':
-        return page_7_layout
-    else:
-        return index_page
+    def display_page(pathname):
+        if pathname == '/page-1':
+            return page_1_layout
+        elif pathname == '/page-2':
+            return page_2_layout
+        elif pathname == '/page-3':
+            return page_3_layout
+        elif pathname == '/page-4':
+            return page_4_layout
+        elif pathname == '/page-5':
+            return page_5_layout
+        elif pathname == '/page-6':
+            return page_6_layout
+        elif pathname == '/page-7':
+            return page_7_layout
+        else:
+            return index_page
+
 
 
 @app.callback(
