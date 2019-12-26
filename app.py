@@ -6,6 +6,7 @@ import dash_daq as daq
 from collections import deque
 import plotly.graph_objs as go
 import random
+import plotly.graph_objects as go
 #import Adafruit_ADS1x15
 external_css = ["https://codepen.io/chriddyp/pen/bWLwgP.css",
                 "https://cdn.rawgit.com/samisahn/dash-app-stylesheets/" +
@@ -110,6 +111,151 @@ tab_selected_style = {
     'color': 'white',
     'padding': '6px'
 }
+
+
+def show_values_tab():
+
+    x = html.Div([
+
+    html.Div(
+                        id="banner",
+                        className="banner",
+                        children=[
+
+                        html.Div(
+                        id="banner-text",
+                        children=[
+                            html.H5("Data Acquisition Metrics"),
+                        ]),
+
+                html.Div(
+                    id="about-us-button",
+                    children=[
+                    html.Div(
+                    children=[
+                        html.H5(children="Citriot Solutions", n_clicks=0),
+                        html.H6(children="Think. Engineer.", n_clicks=0),
+                        ]),
+                html.Img(src='assets/citriot_logo.jpg')
+            ]),
+            dcc.Link(html.Button('Go back to home', style={'backgroundColor':'white'}), href='/'),
+        
+            ]),
+    html.H3('Thermocouple Values', style={'text-align':'center'}),
+    daq.LEDDisplay(
+    label="T 1 (Centigrade)",
+    labelPosition='top',
+    value='12:34'),
+
+    daq.LEDDisplay(
+    label="T 2 (Centigrade)",
+    labelPosition='top',
+    value='12:34'),
+
+    daq.LEDDisplay(
+    label="T 3 (Centigrade)",
+    labelPosition='top',
+    value='12:34'),
+
+    daq.LEDDisplay(
+    label="T 4 (Centigrade)",
+    labelPosition='top',
+    value='12:34'),
+
+    daq.LEDDisplay(
+    label="T 5 (Centigrade)",
+    labelPosition='top',
+    value='12:34'),
+
+    daq.LEDDisplay(
+    label="T 6 (Centigrade)",
+    labelPosition='top',
+    value='12:34'),
+
+    daq.LEDDisplay(
+    label="T 7 (Centigrade)",
+    labelPosition='top',
+    value='12:34'),
+
+    daq.LEDDisplay(
+    label="T 8 (Centigrade)",
+    labelPosition='top',
+    value='12:34')
+    
+      ])
+    return x
+
+def show_analog_tab():
+
+    x = html.Div([
+
+    html.Div(
+                        id="banner",
+                        className="banner",
+                        children=[
+
+                        html.Div(
+                        id="banner-text",
+                        children=[
+                            html.H5("Data Acquisition Metrics"),
+                        ]),
+
+                html.Div(
+                    id="about-us-button",
+                    children=[
+                    html.Div(
+                    children=[
+                        html.H5(children="Citriot Solutions", n_clicks=0),
+                        html.H6(children="Think. Engineer.", n_clicks=0),
+                        ]),
+                html.Img(src='assets/citriot_logo.jpg')
+            ]),
+            dcc.Link(html.Button('Go back to home', style={'backgroundColor':'white'}), href='/'),
+        
+            ]),
+    html.H3('Thermocouple Values', style={'text-align':'center'}),
+    daq.LEDDisplay(
+    label="AI-1",
+    labelPosition='top',
+    value='12:34'),
+
+    daq.LEDDisplay(
+    label="AI-2",
+    labelPosition='top',
+    value='12:34'),
+
+    daq.LEDDisplay(
+    label="AI-3",
+    labelPosition='top',
+    value='12:34'),
+
+    daq.LEDDisplay(
+    label="AI-4",
+    labelPosition='top',
+    value='12:34'),
+
+    daq.LEDDisplay(
+    label="AI-5",
+    labelPosition='top',
+    value='12:34'),
+
+    daq.LEDDisplay(
+    label="AI-6",
+    labelPosition='top',
+    value='12:34'),
+
+    daq.LEDDisplay(
+    label="AI 7",
+    labelPosition='top',
+    value='12:34'),
+
+    daq.LEDDisplay(
+    label="AI 8",
+    labelPosition='top',
+    value='12:34')
+    
+      ])
+    return x
 
 def analog_digital_func(times, data_lrange, data_urange, data_di, data_do):
 
@@ -521,10 +667,10 @@ index_page = html.Div(children=[
     html.Div([html.Img(src='assets/image2vector (1).svg')], style={'text-align':'center'}),
     html.Br()]),
 
-    html.Div([dcc.Link(html.Button('Go to Temperature Sensors', style={'backgroundColor':'white'}), href='/page-1'), dcc.Link(html.Button('Go to Thermocouple Sensors',  style={'backgroundColor':'white'}), href='/page-2')], style={'text-align':'center'}),
+    html.Div([dcc.Link(html.Button('Go to Temperature Sensors', style={'backgroundColor':'white'}), href='/page-1'), dcc.Link(html.Button('Go to Thermocouple Readings', style={'backgroundColor':'white'}), href='/page-6'), dcc.Link(html.Button('Go to Thermocouple Sensors',  style={'backgroundColor':'white'}), href='/page-2')], style={'text-align':'center'}),
     html.Br(),
     html.Br(),
-    html.Div([dcc.Link(html.Button('Go to Analog Input Sensors', style={'backgroundColor':'white'}), href='/page-3'), dcc.Link(html.Button('Go to Digital Input Sensors', style={'backgroundColor':'white'}), href='/page-4'), dcc.Link(html.Button('Go to Digital Output Sensors', style={'backgroundColor':'white'}), href='/page-5')], style={'text-align':'center'})
+    html.Div([dcc.Link(html.Button('Go to Analog Input Sensors', style={'backgroundColor':'white'}), href='/page-3'),dcc.Link(html.Button('Go to Analog Sensor Readings', style={'backgroundColor':'white'}), href='/page-7'), dcc.Link(html.Button('Go to Digital Input Sensors', style={'backgroundColor':'white'}), href='/page-4'), dcc.Link(html.Button('Go to Digital Output Sensors', style={'backgroundColor':'white'}), href='/page-5')], style={'text-align':'center'})
 ])
 page_1_layout = html.Div([
 
@@ -556,7 +702,7 @@ dcc.Link(html.Button('Go back to home', style={'backgroundColor':'white'}), href
                                 value=['Thermocouple 1'],
                                 multi=True),
                     ]),
-                    html.Div(children=[html.Div(id='graphop1')], className='row'),
+                    html.Div(children=[html.Div(id='graphop1'),], className='row'),
                     dcc.Interval(
                     id='graph-update',
                     interval=100),
@@ -631,8 +777,8 @@ dcc.Link(html.Button('Go back to home', style={'backgroundColor':'white'}), href
 page_3_layout = html.Div(analog_tab())
 page_4_layout = html.Div(digitalinput_tab())
 page_5_layout = html.Div(digitaloutput_tab())
-
-
+page_6_layout = html.Div(show_values_tab())
+page_7_layout = html.Div(show_analog_tab())
 
 
 def update_thermocouple_values(times, thermocouple_1, thermocouple_2, thermocouple_3, thermocouple_4, thermocouple_5, thermocouple_6, thermocouple_7, thermocouple_8):
@@ -686,6 +832,10 @@ def display_page(pathname):
         return page_4_layout
     elif pathname == '/page-5':
         return page_5_layout
+    elif pathname == '/page-6':
+        return page_6_layout
+    elif pathname == '/page-7':
+        return page_7_layout
     else:
         return index_page
 
