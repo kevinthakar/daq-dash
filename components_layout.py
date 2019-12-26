@@ -595,7 +595,7 @@ index_page = html.Div(children=[
 
     html.Div([html.Div([html.H3('Welcome to Portable C-DAQ!')], style={'text-align':'center'}),
     html.Br(),
-    html.Div([html.Img(src='assets/image2vector (1).svg')], style={'text-align':'center'}),
+    html.Div([html.Img(src='assets/image2vector (1).svg', style={'width':'15%'})], style={'text-align':'center'}),
     html.Br()]),
 
     html.Div([dcc.Link(html.Button('Go to Temperature Sensors', style={'backgroundColor':'white'}), href='/page-1'), dcc.Link(html.Button('Go to Thermocouple Readings', style={'backgroundColor':'white'}), href='/page-6'), dcc.Link(html.Button('Go to Accelerometer Sensors',  style={'backgroundColor':'white'}), href='/page-2')], style={'text-align':'center'}),
