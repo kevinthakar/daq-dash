@@ -82,7 +82,7 @@ def update_graph(data_names, n):
     )
 def display_accel(data_names):
 
-    graphs = []
+    sensors = []
     #update_accelerometer_values(times, accelerometer_1, accelerometer_2, accelerometer_3)
     if len(data_names)>2:
         class_choice = 'col s12 m6 l4'
@@ -94,7 +94,7 @@ def display_accel(data_names):
 
     for data_name in data_names:
 
-        graphs.append(daq.Gauge(
+        sensors.append(daq.Gauge(
                     id="x-gauge",
                     label="X-axis",
                     labelPosition="bottom",
@@ -105,7 +105,7 @@ def display_accel(data_names):
                     showCurrentValue=True
                     ))
 
-        graphs.append(daq.Gauge(
+        sensors.append(daq.Gauge(
                     id="y-gauge",
                     label="Y-axis",
                     labelPosition="bottom",
@@ -115,7 +115,7 @@ def display_accel(data_names):
                     max=8,
                     showCurrentValue=True
                     ))
-        graphs.append(daq.Gauge(
+        sensors.append(daq.Gauge(
                     id="z-gauge",
                     label="Z-axis",
                     labelPosition="bottom",
@@ -127,9 +127,68 @@ def display_accel(data_names):
                     ))
 
         print(data_name)
-        print(graphs)
+        print(sensors)
 
-    return graphs
+    return sensors
+
+
+@app.callback(
+    dash.dependencies.Output('toggle-switch-output-1', 'children'),
+    [dash.dependencies.Input('my-daq-booleanswitch-1', 'on')])
+
+def update_output(on):
+    
+    return 'The switch is {}.'.format(on)
+
+@app.callback(
+    dash.dependencies.Output('toggle-switch-output-2', 'children'),
+    [dash.dependencies.Input('my-daq-booleanswitch-2', 'on')])
+
+def update_output(on):
+    return 'The switch is {}.'.format(on)
+
+@app.callback(
+    dash.dependencies.Output('toggle-switch-output-3', 'children'),
+    [dash.dependencies.Input('my-daq-booleanswitch-3', 'on')])
+
+def update_output(on):
+    return 'The switch is {}.'.format(on)
+
+@app.callback(
+    dash.dependencies.Output('toggle-switch-output-4', 'children'),
+    [dash.dependencies.Input('my-daq-booleanswitch-4', 'on')])
+
+def update_output(on):
+    return 'The switch is {}.'.format(on)
+
+@app.callback(
+    dash.dependencies.Output('toggle-switch-output-5', 'children'),
+    [dash.dependencies.Input('my-daq-booleanswitch-5', 'on')])
+
+def update_output(on):
+    return 'The switch is {}.'.format(on)
+
+@app.callback(
+    dash.dependencies.Output('toggle-switch-output-6', 'children'),
+    [dash.dependencies.Input('my-daq-booleanswitch-6', 'on')])
+
+def update_output(on):
+    return 'The switch is {}.'.format(on)
+
+@app.callback(
+    dash.dependencies.Output('toggle-switch-output-7', 'children'),
+    [dash.dependencies.Input('my-daq-booleanswitch-7', 'on')])
+
+def update_output(on):
+    return 'The switch is {}.'.format(on)
+
+@app.callback(
+    dash.dependencies.Output('toggle-switch-output-8', 'children'),
+    [dash.dependencies.Input('my-daq-booleanswitch-8', 'on')])
+
+def update_output(on):
+    return 'The switch is {}.'.format(on)
+
     
 if __name__ == '__main__':
     app.run_server(debug=True)
