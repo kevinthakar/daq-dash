@@ -43,7 +43,7 @@ def digitaloutput_tab():
 
                     html.Div([daq.BooleanSwitch(
                     id='my-daq-booleanswitch-1',
-                    on=True,
+                    on=False,
                     label='DO 1',
                     style={'paddingBottom': 25}
                 ), html.Div(id='toggle-switch-output-1', style={'text-align':'center', 'paddingBottom':30})]),
@@ -51,49 +51,49 @@ def digitaloutput_tab():
                     html.Div([
                     daq.BooleanSwitch(
                     id='my-daq-booleanswitch-2',
-                    on=True,
+                    on=False,
                     label='DO 2',
                     style={'paddingBottom': 25}
                 ), html.Div(id='toggle-switch-output-2', style={'text-align':'center', 'paddingBottom':30})]),
 
                     html.Div([daq.BooleanSwitch(
                     id='my-daq-booleanswitch-3',
-                    on=True,
+                    on=False,
                     label='DO 3',
                     style={'paddingBottom': 25}
                 ), html.Div(id='toggle-switch-output-3', style={'text-align':'center', 'paddingBottom':30})]),
 
                     html.Div([daq.BooleanSwitch(
                     id='my-daq-booleanswitch-4',
-                    on=True,
+                    on=False,
                     label='DO 4',
                     style={'paddingBottom': 25}
                 ), html.Div(id='toggle-switch-output-4', style={'text-align':'center', 'paddingBottom':30})]),
 
                     html.Div([daq.BooleanSwitch(
                     id='my-daq-booleanswitch-5',
-                    on=True,
+                    on=False,
                     label='DO 5',
                     style={'paddingBottom': 25}
                 ), html.Div(id='toggle-switch-output-5', style={'text-align':'center', 'paddingBottom':30})]),
 
                     html.Div([daq.BooleanSwitch(
                     id='my-daq-booleanswitch-6',
-                    on=True,
+                    on=False,
                     label='DO 6',
                     style={'paddingBottom': 25}
                 ), html.Div(id='toggle-switch-output-6', style={'text-align':'center', 'paddingBottom':30})]),
 
                     html.Div([daq.BooleanSwitch(
                     id='my-daq-booleanswitch-7',
-                    on=True,
+                    on=False,
                     label='DO 7',
                     style={'paddingBottom': 25}
                 ), html.Div(id='toggle-switch-output-7', style={'text-align':'center', 'paddingBottom':30})]),
 
                     html.Div([daq.BooleanSwitch(
                     id='my-daq-booleanswitch-8',
-                    on=True,
+                    on=False,
                     label='DO 8',
                     style={'paddingBottom': 25}
                 ), html.Div(id='toggle-switch-output-8', style={'text-align':'center', 'paddingBottom':30})]),

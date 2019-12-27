@@ -10,11 +10,19 @@ from collections import deque
 import plotly.graph_objs as go
 import random
 import plotly.graph_objects as go
-
+import RPi.GPIO as GPIO
 
 from variables import *
 from components_layout import *
 from update_readings import *
+
+pinList = [4,17,18,27,22,23,24,10]
+
+GPIO.setmode(GPIO.BCM)
+
+for i in pinList:
+    GPIO.setup(i, GPIO.OUT)
+    GPIO.output(i, GPIO.LOW)
 
 @app.callback(dash.dependencies.Output('page-content', 'children'),
               [dash.dependencies.Input('url', 'pathname')])
@@ -137,8 +145,14 @@ def display_accel(data_names):
     [dash.dependencies.Input('my-daq-booleanswitch-1', 'on')])
 
 def update_output(on):
+    if(on):
+         GPIO.output(4, GPIO.HIGH)
+    else:
+        GPIO.output(4, GPIO.LOW)
+        
     
     return 'The switch is {}.'.format(on)
+
 
 @app.callback(
     dash.dependencies.Output('toggle-switch-output-2', 'children'),
@@ -152,6 +166,11 @@ def update_output(on):
     [dash.dependencies.Input('my-daq-booleanswitch-3', 'on')])
 
 def update_output(on):
+    if(on):
+         GPIO.output(17, GPIO.HIGH)
+    else:
+        GPIO.output(17, GPIO.LOW)
+     
     return 'The switch is {}.'.format(on)
 
 @app.callback(
@@ -159,6 +178,11 @@ def update_output(on):
     [dash.dependencies.Input('my-daq-booleanswitch-4', 'on')])
 
 def update_output(on):
+    if(on):
+         GPIO.output(18, GPIO.HIGH)
+    else:
+        GPIO.output(18, GPIO.LOW)
+     
     return 'The switch is {}.'.format(on)
 
 @app.callback(
@@ -166,6 +190,11 @@ def update_output(on):
     [dash.dependencies.Input('my-daq-booleanswitch-5', 'on')])
 
 def update_output(on):
+    if(on):
+         GPIO.output(27, GPIO.HIGH)
+    else:
+        GPIO.output(27, GPIO.LOW)
+     
     return 'The switch is {}.'.format(on)
 
 @app.callback(
@@ -173,6 +202,11 @@ def update_output(on):
     [dash.dependencies.Input('my-daq-booleanswitch-6', 'on')])
 
 def update_output(on):
+    if(on):
+         GPIO.output(22, GPIO.HIGH)
+    else:
+        GPIO.output(22, GPIO.LOW)
+     
     return 'The switch is {}.'.format(on)
 
 @app.callback(
@@ -180,6 +214,11 @@ def update_output(on):
     [dash.dependencies.Input('my-daq-booleanswitch-7', 'on')])
 
 def update_output(on):
+    if(on):
+         GPIO.output(23, GPIO.HIGH)
+    else:
+        GPIO.output(23, GPIO.LOW)
+     
     return 'The switch is {}.'.format(on)
 
 @app.callback(
@@ -187,6 +226,11 @@ def update_output(on):
     [dash.dependencies.Input('my-daq-booleanswitch-8', 'on')])
 
 def update_output(on):
+    if(on):
+         GPIO.output(24, GPIO.HIGH)
+    else:
+        GPIO.output(24, GPIO.LOW)
+     
     return 'The switch is {}.'.format(on)
 
     
