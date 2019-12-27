@@ -1,3 +1,5 @@
+#!/home/pi/MyDAQApp/daq/bin/python3
+
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
@@ -148,6 +150,6 @@ def display_accel(data_names, n):
             ), className=class_choice))
 
     return graphs
-
+    
 if __name__ == '__main__':
     app.run_server(debug=True)
