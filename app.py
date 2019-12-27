@@ -78,12 +78,12 @@ def update_graph(data_names, n):
 
 @app.callback(
     dash.dependencies.Output('posxyz','children'),
-    [dash.dependencies.Input('dropdownlist2', 'value'), dash.dependencies.Input('graph-update', 'interval')]
+    [dash.dependencies.Input('dropdownlist2', 'value')]
     )
-def display_accel(data_names, n):
+def display_accel(data_names):
 
     graphs = []
-    update_accelerometer_values(times, accelerometer_1, accelerometer_2, accelerometer_3)
+    #update_accelerometer_values(times, accelerometer_1, accelerometer_2, accelerometer_3)
     if len(data_names)>2:
         class_choice = 'col s12 m6 l4'
     elif len(data_names) == 2:
@@ -94,22 +94,40 @@ def display_accel(data_names, n):
 
     for data_name in data_names:
 
-        data = go.Scatter(
-            x=list(times),
-            y=list(data_accelerometer[data_name]),
-            name='Scatter',
-            fill="tozeroy",
-            fillcolor="#6897bb"
-            )
+        graphs.append(daq.Gauge(
+                    id="x-gauge",
+                    label="X-axis",
+                    labelPosition="bottom",
+                    units="g",
+                    value=0,
+                    min=-8,
+                    max=8,
+                    showCurrentValue=True
+                    ))
 
-        graphs.append(html.Div(dcc.Graph(
-            id=data_name,
-            animate=True,
-            figure={'data': [data],'layout' : go.Layout(xaxis=dict(range=[min(times),max(times)]),
-                                                        yaxis=dict(range=[min(data_accelerometer[data_name]),max(data_accelerometer[data_name])]),
-                                                        margin={'l':50,'r':1,'t':45,'b':70},
-                                                        title='{}'.format(data_name))}
-            ), className=class_choice))
+        graphs.append(daq.Gauge(
+                    id="y-gauge",
+                    label="Y-axis",
+                    labelPosition="bottom",
+                    units="g",
+                    value=0,
+                    min=-8,
+                    max=8,
+                    showCurrentValue=True
+                    ))
+        graphs.append(daq.Gauge(
+                    id="z-gauge",
+                    label="Z-axis",
+                    labelPosition="bottom",
+                    units="g",
+                    value=0,
+                    min=-8,
+                    max=8,
+                    showCurrentValue=True
+                    ))
+
+        print(data_name)
+        print(graphs)
 
     return graphs
     

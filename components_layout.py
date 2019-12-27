@@ -12,15 +12,14 @@ from digitalInput_layout import *
 from digitalOutput_layout import *
 from landingPage_layout import *
 
-
-app = dash.Dash('data-logger', external_stylesheets=external_css)
-app.title = 'Citriot'
-app.config['suppress_callback_exceptions'] = True
-
 external_css = ["https://codepen.io/chriddyp/pen/bWLwgP.css",
                 "https://cdn.rawgit.com/samisahn/dash-app-stylesheets/" +
                 "0925c314/dash-accelerometer.css",
                 "https://fonts.googleapis.com/css?family=Dosis"]
+
+app = dash.Dash('data-logger', external_stylesheets=external_css)
+app.title = 'Citriot'
+app.config['suppress_callback_exceptions'] = True
 
 
 app.layout = html.Div([
