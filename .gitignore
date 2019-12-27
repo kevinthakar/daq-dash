@@ -1,6 +1,4 @@
-<<<<<<< HEAD
 daq
 daq/
-=======
-daq
->>>>>>> a2e43f10fa3be91de2f905d0cd8a1da81129fb95
+*.pyc
+__pycache__
