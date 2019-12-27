@@ -13,7 +13,7 @@ from variables import *
 from components_layout import *
 
 
-def show_values_tab():
+def thermocouple_readings():
 
     X = html.Div([
 
@@ -91,4 +91,45 @@ def show_values_tab():
     value='12.34')
     
       ])
+    return X
+
+
+def thermocouple_layout():
+
+    X =  html.Div([
+
+                    html.Div(
+                        id="banner",
+                        className="banner",
+                        children=[
+
+                        html.Div(
+                        id="banner-text",
+                        children=[
+                            html.H5("Data Acquisition Metrics"),
+                        ]),
+
+                html.Div(
+                    id="about-us-button",
+                    children=[
+                    html.Div(
+                    children=[
+                        html.H5(children="Citriot Solutions", n_clicks=0),
+                        html.H6(children="Think. Engineer.", n_clicks=0),
+                        ]),
+                html.Img(src='assets/citriot_logo.jpg')
+            ]),
+            dcc.Link(html.Button('Go back to home', style={'backgroundColor':'white'}), href='/'),        
+            ]),
+                html.Div([dcc.Dropdown(id='dropdownlist1',
+                                options = [{'label': s, 'value': s} for s in data_thermocouple.keys()],
+                                value=['Thermocouple 1'],
+                                multi=True),
+                    ]),
+                    html.Div(children=[html.Div(id='graphop1'),], className='row'),
+                    dcc.Interval(
+                    id='graph-update',
+                    interval=100),
+                ], className="container",style={'width':'98%','margin-left':10,'margin-right':10,'max-width':50000})
+        
     return X
