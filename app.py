@@ -11,6 +11,7 @@ import plotly.graph_objs as go
 import random
 import plotly.graph_objects as go
 import RPi.GPIO as GPIO
+from tem import temp_data
 
 from variables import *
 from components_layout import *
@@ -53,6 +54,10 @@ def display_page(pathname):
 def update_graph(data_names, n):
 
     graphs = []
+    list_value = []
+    list_value = temp_data()
+    print(list_value)
+    print("1111111")
     update_thermocouple_values(times, thermocouple_1, thermocouple_2, thermocouple_3, thermocouple_4, thermocouple_5, thermocouple_6, thermocouple_7, thermocouple_8)
     if len(data_names)>2:
         class_choice = 'col s12 m6 l4'
@@ -92,14 +97,6 @@ def display_accel(data_names):
 
     sensors = []
     #update_accelerometer_values(times, accelerometer_1, accelerometer_2, accelerometer_3)
-    if len(data_names)>2:
-        class_choice = 'col s12 m6 l4'
-    elif len(data_names) == 2:
-        class_choice = 'col s12 m6 l6'
-    else:
-        class_choice = 'col s12'
-
-
     for data_name in data_names:
 
         sensors.append(daq.Gauge(
