@@ -1,6 +1,6 @@
 #!/home/pi/MyDAQApp/daq/bin/python3
 
-#import Adafruit_ADS1x15
+import Adafruit_ADS1x15
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
@@ -11,7 +11,7 @@ import plotly.graph_objs as go
 import random
 import plotly.graph_objects as go
 import RPi.GPIO as GPIO
-from tem import temp_data
+#from Tem import temp_data
 
 from variables import *
 from components_layout import *
@@ -55,10 +55,10 @@ def update_graph(data_names, n):
 
     graphs = []
     list_value = []
-    list_value = temp_data()
-    print(list_value)
+    #list_value = temp_data()
+    #print(list_value)
     print("1111111")
-    update_thermocouple_values(times, thermocouple_1, thermocouple_2, thermocouple_3, thermocouple_4, thermocouple_5, thermocouple_6, thermocouple_7, thermocouple_8)
+    #update_thermocouple_values(times, thermocouple_1, thermocouple_2, thermocouple_3, thermocouple_4, thermocouple_5, thermocouple_6, thermocouple_7, thermocouple_8)
     if len(data_names)>2:
         class_choice = 'col s12 m6 l4'
     elif len(data_names) == 2:
