@@ -1,5 +1,5 @@
 import serial
-from flask import Flask
+#from flask import Flask
 
 def temp_data():
     ser = serial.Serial('/dev/ttyACM0',9600)
@@ -14,10 +14,11 @@ def temp_data():
             for temperature in values:
                 temperature = temperature.decode("utf-8")
                 if (temperature!='NaN'):
-                    temperature = float(temperature.rstrip('\r\n'))
+                    temperature = temperature.rstrip('\r\n')
                     temp_list.append(temperature)
                 else:
-                    temp_list.append('NaN')
+                    temp_list.append(123)
             return temp_list
 
-
+while True:
+    print(temp_data())

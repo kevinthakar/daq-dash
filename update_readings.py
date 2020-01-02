@@ -24,11 +24,11 @@ def update_thermocouple_values(times, thermocouple_1, thermocouple_2, thermocoup
         thermocouple_1.append(l[0])
         thermocouple_2.append(l[1])
         thermocouple_3.append(l[2])
-        thermocouple_4.append(random.randrange(1000,9500))
-        thermocouple_5.append(random.randrange(30,140))
-        thermocouple_6.append(random.randrange(10,90))
-        thermocouple_7.append(random.randrange(35,90))
-        thermocouple_8.append(random.randrange(10,90))
+        thermocouple_4.append(l[3])
+        thermocouple_5.append(l[4])
+        thermocouple_6.append(l[5])
+        thermocouple_7.append(l[6])
+        thermocouple_8.append(l[7])
 
         return times, thermocouple_1, thermocouple_2, thermocouple_3, thermocouple_4, thermocouple_5, thermocouple_6, thermocouple_7, thermocouple_8
 
