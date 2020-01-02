@@ -11,7 +11,7 @@ import plotly.graph_objs as go
 import random
 import plotly.graph_objects as go
 import RPi.GPIO as GPIO
-#from Tem import temp_data
+from thermocouple import temp_data
 
 from variables import *
 from components_layout import *
@@ -55,8 +55,8 @@ def update_graph(data_names, n):
 
     graphs = []
     list_value = []
-    #list_value = temp_data()
-    #print(list_value)
+    list_value = temp_data()
+    print(list_value)
     print("1111111")
     #update_thermocouple_values(times, thermocouple_1, thermocouple_2, thermocouple_3, thermocouple_4, thermocouple_5, thermocouple_6, thermocouple_7, thermocouple_8)
     if len(data_names)>2:

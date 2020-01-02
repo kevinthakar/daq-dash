@@ -18,5 +18,6 @@ def temp_data():
                     temp_list.append(temperature)
                 else:
                     temp_list.append('NaN')
-            print(temp_list)
+            return temp_list
+
 
