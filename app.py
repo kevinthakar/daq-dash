@@ -93,7 +93,7 @@ def update_graph(data_names, n):
 def display_accel(data_names):
 
     sensors = []
-    x, y, z = accelerometer_values()
+    #x, y, z = accelerometer_values()
     #update_accelerometer_values(times, accelerometer_1, accelerometer_2, accelerometer_3)
     for data_name in data_names:
 
@@ -102,7 +102,7 @@ def display_accel(data_names):
                     label="X-axis",
                     labelPosition="bottom",
                     units="g",
-                    value=x,
+                    value=0,
                     min=-8,
                     max=8,
                     showCurrentValue=True
@@ -113,7 +113,7 @@ def display_accel(data_names):
                     label="Y-axis",
                     labelPosition="bottom",
                     units="g",
-                    value=y,
+                    value=0,
                     min=-8,
                     max=8,
                     showCurrentValue=True
@@ -123,7 +123,7 @@ def display_accel(data_names):
                     label="Z-axis",
                     labelPosition="bottom",
                     units="g",
-                    value=z,
+                    value=0,
                     min=-8,
                     max=8,
                     showCurrentValue=True
