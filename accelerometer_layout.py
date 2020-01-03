@@ -53,8 +53,8 @@ def accelerometer_layout():
                         showCurrentValue=True
                     ),
                     daq.Gauge(
-                        id="x-gauge",
-                        label="X-axis",
+                        id="y-gauge",
+                        label="Y-axis",
                         labelPosition="bottom",
                         units="g",
                         value=0,
@@ -63,8 +63,8 @@ def accelerometer_layout():
                         showCurrentValue=True
                     ),
                     daq.Gauge(
-                        id="x-gauge",
-                        label="X-axis",
+                        id="z-gauge",
+                        label="Z-axis",
                         labelPosition="bottom",
                         units="g",
                         value=0,
