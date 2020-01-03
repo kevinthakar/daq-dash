@@ -14,7 +14,7 @@ from components_layout import *
 
 def accelerometer_layout():
     
-    X = html.Div([
+    X = html.Div([dcc.Interval(id="stream", interval=500, n_intervals=0),
                 html.Div(
                         id="banner",
                         className="banner",

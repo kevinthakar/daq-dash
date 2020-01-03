@@ -134,6 +134,16 @@ def display_accel(data_names):
 
     return sensors
 
+@app.callback(
+    dash.dependencies.Output('x-gauge','value'),
+    [dash.dependencies.Input('stream', 'n_intervals')]
+    )
+def stream(conn):
+    if conn:
+        x, y, z = accelerometer_values()
+        return x
+
+
 
 @app.callback(
     dash.dependencies.Output('toggle-switch-output-1', 'children'),
