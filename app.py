@@ -12,7 +12,7 @@ import random
 import plotly.graph_objects as go
 import RPi.GPIO as GPIO
 from thermocouple import temp_data
-
+from Accelerometer import accelerometer_values
 from variables import *
 from components_layout import *
 from update_readings import *
@@ -93,6 +93,7 @@ def update_graph(data_names, n):
 def display_accel(data_names):
 
     sensors = []
+    x, y, z = accelerometer_values()
     #update_accelerometer_values(times, accelerometer_1, accelerometer_2, accelerometer_3)
     for data_name in data_names:
 
@@ -101,7 +102,7 @@ def display_accel(data_names):
                     label="X-axis",
                     labelPosition="bottom",
                     units="g",
-                    value=0,
+                    value=x,
                     min=-8,
                     max=8,
                     showCurrentValue=True
@@ -112,7 +113,7 @@ def display_accel(data_names):
                     label="Y-axis",
                     labelPosition="bottom",
                     units="g",
-                    value=0,
+                    value=y,
                     min=-8,
                     max=8,
                     showCurrentValue=True
@@ -122,7 +123,7 @@ def display_accel(data_names):
                     label="Z-axis",
                     labelPosition="bottom",
                     units="g",
-                    value=0,
+                    value=z,
                     min=-8,
                     max=8,
                     showCurrentValue=True
