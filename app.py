@@ -95,6 +95,24 @@ def stream(conn):
         x, y, z = accelerometer_values()
         return x
 
+@app.callback(
+    dash.dependencies.Output('y-gauge','value'),
+    [dash.dependencies.Input('stream', 'n_intervals')]
+    )
+def stream(conn):
+    if conn:
+        x, y, z = accelerometer_values()
+        return y
+
+@app.callback(
+    dash.dependencies.Output('z-gauge','value'),
+    [dash.dependencies.Input('stream', 'n_intervals')]
+    )
+def stream(conn):
+    if conn:
+        x, y, z = accelerometer_values()
+        return z
+
 
 
 @app.callback(
