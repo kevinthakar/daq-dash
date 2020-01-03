@@ -19,6 +19,3 @@ def temp_data():
                 else:
                     temp_list.append(123)
             return temp_list
-
-while True:
-    print(temp_data())
