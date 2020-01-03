@@ -39,15 +39,39 @@ def accelerometer_layout():
             dcc.Link(html.Button('Go back to home', style={'backgroundColor':'white'}), href='/'),        
             ]),
 
-                html.Div([dcc.Dropdown(id='dropdownlist2',
-                                options = [{'label': s, 'value': s} for s in data_accelerometer.keys()],
-                                value=['Accelerometer 1'],
-                                multi=True),
-                    ]),
-                    html.Div(children=[html.Div(id='posxyz',
-                        style={'text-align':'center'}
-                    )
-                ]
-            )])
+                html.Div(
+                    html.Div(children=[
+
+                        daq.Gauge(
+                        id="x-gauge",
+                        label="X-axis",
+                        labelPosition="bottom",
+                        units="g",
+                        value=0,
+                        min=-8,
+                        max=8,
+                        showCurrentValue=True
+                    ),
+                    daq.Gauge(
+                        id="x-gauge",
+                        label="X-axis",
+                        labelPosition="bottom",
+                        units="g",
+                        value=0,
+                        min=-8,
+                        max=8,
+                        showCurrentValue=True
+                    ),
+                    daq.Gauge(
+                        id="x-gauge",
+                        label="X-axis",
+                        labelPosition="bottom",
+                        units="g",
+                        value=0,
+                        min=-8,
+                        max=8,
+                        showCurrentValue=True
+                    ),
+                ],      style={'text-align':'center'}))])
 
     return X

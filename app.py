@@ -87,54 +87,6 @@ def update_graph(data_names, n):
 
 
 @app.callback(
-    dash.dependencies.Output('posxyz','children'),
-    [dash.dependencies.Input('dropdownlist2', 'value')]
-    )
-def display_accel(data_names):
-
-    sensors = []
-    #x, y, z = accelerometer_values()
-    #update_accelerometer_values(times, accelerometer_1, accelerometer_2, accelerometer_3)
-    for data_name in data_names:
-
-        sensors.append(daq.Gauge(
-                    id="x-gauge",
-                    label="X-axis",
-                    labelPosition="bottom",
-                    units="g",
-                    value=0,
-                    min=-8,
-                    max=8,
-                    showCurrentValue=True
-                    ))
-
-        sensors.append(daq.Gauge(
-                    id="y-gauge",
-                    label="Y-axis",
-                    labelPosition="bottom",
-                    units="g",
-                    value=0,
-                    min=-8,
-                    max=8,
-                    showCurrentValue=True
-                    ))
-        sensors.append(daq.Gauge(
-                    id="z-gauge",
-                    label="Z-axis",
-                    labelPosition="bottom",
-                    units="g",
-                    value=0,
-                    min=-8,
-                    max=8,
-                    showCurrentValue=True
-                    ))
-
-        print(data_name)
-        print(sensors)
-
-    return sensors
-
-@app.callback(
     dash.dependencies.Output('x-gauge','value'),
     [dash.dependencies.Input('stream', 'n_intervals')]
     )
