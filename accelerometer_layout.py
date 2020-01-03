@@ -45,41 +45,6 @@ def accelerometer_layout():
                                 multi=True),
                     ]),
                     html.Div(children=[html.Div(id='posxyz',
-                    children=[
-                                html.Div([daq.Gauge(
-                                    id="x-gauge",
-                                    label="X-axis",
-                                    labelPosition="bottom",
-                                    units="g",
-                                    value=0,
-                                    min=-8,
-                                    max=8,
-                                    showCurrentValue=True
-                            ),], style={'display':'inline-block', 'paddingLeft':50, 'paddingRight':50}),
-                        
-
-                            html.Div([daq.Gauge(
-                                id="y-gauge",
-                                label="Y-axis",
-                                labelPosition="bottom",
-                                units="g",
-                                value=0,
-                                min=-8,
-                                max=8,
-                                showCurrentValue=True,
-                            ),], style={'display':'inline-block', 'paddingLeft':50, 'paddingRight':50}),
-
-                            html.Div([daq.Gauge(
-                                id="z-gauge",
-                                label="Z-axis",
-                                labelPosition="bottom",
-                                units="g",
-                                value=0,
-                                min=-8,
-                                max=8,
-                                showCurrentValue=True,
-                            )], style={'display':'inline-block', 'paddingLeft':50, 'paddingRight':50})
-                        ],
                         style={'text-align':'center'}
                     )
                 ]
