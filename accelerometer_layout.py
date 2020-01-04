@@ -48,8 +48,8 @@ def accelerometer_layout():
                         labelPosition="bottom",
                         units="g",
                         value=0,
-                        min=-8,
-                        max=8,
+                        min=-12,
+                        max=12,
                         showCurrentValue=True
                     ),
                     daq.Gauge(
@@ -58,8 +58,8 @@ def accelerometer_layout():
                         labelPosition="bottom",
                         units="g",
                         value=0,
-                        min=-8,
-                        max=8,
+                        min=-12,
+                        max=12,
                         showCurrentValue=True
                     ),
                     daq.Gauge(
@@ -68,8 +68,8 @@ def accelerometer_layout():
                         labelPosition="bottom",
                         units="g",
                         value=0,
-                        min=-8,
-                        max=8,
+                        min=-12,
+                        max=12,
                         showCurrentValue=True
                     ),
                 ],      style={'text-align':'center'}))])
