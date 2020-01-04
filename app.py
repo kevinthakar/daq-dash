@@ -119,7 +119,8 @@ def stream(conn):
     )
 def update_led(conn):
     if conn:
-        return (temp_data())[0]
+        print(temp_data()[0])
+        return (temp_data()[0])
 
 
 @app.callback(
