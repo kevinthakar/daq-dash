@@ -41,12 +41,14 @@ def thermocouple_readings():
             dcc.Link(html.Button('Go back to home', style={'backgroundColor':'white'}), href='/'),
         
             ]),
+    dcc.Interval(id="updateled", interval=1000, n_intervals=0),
     html.H3('Thermocouple Values', style={'text-align':'center'}),
     daq.LEDDisplay(
+    id="led1",
     label="T 1 (Centigrade)",
     labelPosition='top',
     color='red',
-    value='1.11'),
+    value='0'),
 
     daq.LEDDisplay(
     label="T 2 (Centigrade)",

@@ -113,6 +113,13 @@ def stream(conn):
         x, y, z = accelerometer_values()
         return z
 
+@app.callback(
+    dash.dependencies.Output('led1','value'),
+    [dash.dependencies.Input('updateled', 'n_intervals')]
+    )
+def update_led(conn):
+    if conn:
+        return (temp_data())[0]
 
 
 @app.callback(
