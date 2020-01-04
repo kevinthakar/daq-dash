@@ -20,7 +20,7 @@ def update_thermocouple_values(times, thermocouple_1, thermocouple_2, thermocoup
         while i<=10:
             times.append(time.time())
             l = temp_data()
-            print(l)
+            #print(l)
     #if len(times) == 1:
     #starting relevant values
             thermocouple_1.append(l[0])
